@@ -25,7 +25,7 @@ module.exports = [
   {
     path: '/keywords',
     preferredView: '/Keyword',
-    acceptedTypes: ['pad:Keyword']
+    acceptedTypes: ['pair:Keyword']
   },
   {
     path: '/pages',
@@ -35,6 +35,6 @@ module.exports = [
   {
     path: '/resources',
     preferredView: '/Resource',
-    acceptedTypes: ['pad:Resource']
+    acceptedTypes: ['pair:Resource']
   }
 ];

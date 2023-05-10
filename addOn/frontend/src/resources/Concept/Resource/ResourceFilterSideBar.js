@@ -4,6 +4,7 @@ import { ReferenceFilter } from '@semapps/list-components';
 import { Form, Field } from 'react-final-form';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useStore } from 'react-redux';
+import ReferenceFilterTree from './ReferenceFilterTree';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -67,10 +68,17 @@ const ProjectFilterSidebar = () => {
       <CardContent className={classes.cardContent}>
         <ReferenceFilter
           reference="Keyword"
-          source="pad:hasKeyword"
+          source="pair:hasKeyword"
           limit={100}
           showCounters={false}
           sort={{ field: 'pair:label', order: 'DESC' }}
+        />
+        <ReferenceFilterTree
+          reference="Theme"
+          source="pair:broader"
+          label="pair:label"
+          limit={100}
+          sort={{ field: 'pair:label', order: 'ASC' }}
         />
       </CardContent>
     </Card>

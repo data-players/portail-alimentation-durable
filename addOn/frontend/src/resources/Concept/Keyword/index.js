@@ -17,7 +17,7 @@ export default {
     }
   },
   dataModel: {
-    types: ['pad:Keyword'],
+    types: ['pair:Keyword'],
     list: {
       servers: '@default'
     },

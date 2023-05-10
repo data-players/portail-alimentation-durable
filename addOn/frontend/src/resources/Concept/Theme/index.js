@@ -1,23 +1,23 @@
-import ResourceCreate from "./ResourceCreate";
-import ResourceEdit from './ResourceEdit';
-import ResourceList from './ResourceList';
-import ResourceShow from './ResourceShow';
+import ThemeCreate from "./ThemeCreate";
+import ThemeEdit from './ThemeEdit';
+import ThemeList from './ThemeList';
+import ThemeShow from './ThemeShow';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 
 export default {
   config: {
-    list: ResourceList,
-    show: ResourceShow,
-    create: ResourceCreate,
-    edit: ResourceEdit,
+    list: ThemeList,
+    show: ThemeShow,
+    create: ThemeCreate,
+    edit: ThemeEdit,
     icon: LocalOfferIcon,
     options: {
-      label: 'Resources',
+      label: 'Thèmes',
       parent: 'Concept'
     }
   },
   dataModel: {
-    types: ['pair:Resource'],
+    types: ['pair:Theme'],
     list: {
       servers: '@default'
     },
@@ -27,13 +27,12 @@ export default {
   },
   translations: {
     fr: {
-      name: 'Resource ||| Resources',
+      name: 'Thème |||| Thèmes',
       fields: {
         'pair:label': 'Titre',
         'pair:comment': 'Courte description',
         'pair:description': 'Description',
-        'pair:topicOf': 'Sujet de',
-        'pair:keywordOf': "Mots clefs"
+        'pair:topicOf': 'Sujet de'
       }
     }
   }
