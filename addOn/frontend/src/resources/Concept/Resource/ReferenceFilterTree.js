@@ -109,7 +109,7 @@ function GenerateTreeItem(source, label, allItems, routeTree, parentId) {
   const ReferenceFilterTree = ({ reference, source, label, limit, sort, filter, icon, predicate }) => {
     const { data } = useGetList(reference, { page: 1, perPage: Infinity }, sort, filter);
     const { filterValues, setFilters } = useListFilterContext();
-  
+
     let routeTree = [], allItems = [];
     for (const item in data) {
       if (data[item][source] === undefined ) {
@@ -117,7 +117,7 @@ function GenerateTreeItem(source, label, allItems, routeTree, parentId) {
       }
       allItems = allItems.concat(data[item]);
     }
-  
+
     const handleSelect = (event, nodes) => {
       const sparqlWhere = {
         "type": "bgp",
@@ -141,7 +141,6 @@ function GenerateTreeItem(source, label, allItems, routeTree, parentId) {
   
       const encodedQuery = encodeURIComponent(JSON.stringify(sparqlWhere));
       setFilters({...filterValues, "sparqlWhere": encodedQuery })
-      console.log(filterValues)
     }
   
     return (

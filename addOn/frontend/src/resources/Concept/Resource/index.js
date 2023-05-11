@@ -19,7 +19,8 @@ export default {
   dataModel: {
     types: ['pair:Resource'],
     list: {
-      servers: '@default'
+      servers: '@default',
+      forceArray: ['pair:topicOf', "pair:keywordOf"]
     },
     fieldsMapping: {
       title: 'pair:label'

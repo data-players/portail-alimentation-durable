@@ -68,7 +68,7 @@ const ProjectFilterSidebar = () => {
       <CardContent className={classes.cardContent}>
         <ReferenceFilter
           reference="Keyword"
-          source="pair:hasKeyword"
+          source="pair:keywordOf"
           limit={100}
           showCounters={false}
           sort={{ field: 'pair:label', order: 'DESC' }}
@@ -77,6 +77,7 @@ const ProjectFilterSidebar = () => {
           reference="Theme"
           source="pair:broader"
           label="pair:label"
+          predicate="pair:topicOf"
           limit={100}
           sort={{ field: 'pair:label', order: 'ASC' }}
         />

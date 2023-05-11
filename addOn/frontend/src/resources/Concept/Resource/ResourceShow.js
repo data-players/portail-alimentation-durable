@@ -22,6 +22,11 @@ const ResourceShow = props => (
               <ChipField source="pair:label" color="secondary" />
             </SingleFieldList>
           </ReferenceArrayField>
+          <ReferenceArrayField reference="Keyword" source="pair:keywordOf">
+            <SingleFieldList linkType="show">
+              <ChipField source="pair:label" color="secondary" />
+            </SingleFieldList>
+          </ReferenceArrayField>
         </SideList>
       </Grid>
     </Grid>

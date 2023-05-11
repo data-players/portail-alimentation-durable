@@ -46,7 +46,6 @@ function GenerateTreeItem( listTheme, routeTree, classes, parentId,) {
 
 const TreeList =({data}) => {
     const classes = useStyles();
-    console.log(classes)
     let routeTree = [], listTheme = [];
     for (const theme in data) {
       if (data[theme]['pair:broader'] === undefined ) {
