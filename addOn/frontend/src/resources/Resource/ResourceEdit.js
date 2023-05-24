@@ -20,7 +20,7 @@ export const ResourceEdit = props => {
           {/* <ReferenceInput label="Thème" reference="Theme" source="pair:topicOf" >
             <AutocompleteArrayInput optionText="pair:label" fullWidth {...props} />
           </ReferenceInput> */}
-          <ReferenceInput label="Thème" reference="Theme" source="pair:topicOf" style={{display: "flex"}} >
+          <ReferenceInput label="Sujet de" reference="Theme" source="pair:topicOf" style={{display: "flex"}} >
             <ReferenceTreeInput {...props} />
           </ReferenceInput>
         </FormTab>

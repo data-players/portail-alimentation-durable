@@ -37,7 +37,6 @@ function CustomTreeItem(props) {
 
 const ReferenceTreeInput = (props) => {
     const record = useRecordContext();
-    const [showDialog, setShowDialog] = useState(false);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -51,8 +50,7 @@ const ReferenceTreeInput = (props) => {
       }
       allItems = allItems.concat(data[item]);
     }
-    console.log(props.input.value)
-
+    
     const handleSelect = (event, nodes) => {
         if (!props.input.value.includes(nodes) && props.input.value !== ""){
             props.input.value.push(nodes)
@@ -62,15 +60,11 @@ const ReferenceTreeInput = (props) => {
 
     return (
         <div style={{display: "flex"}}>
-            <Grid container spacing={2}>
-                <Grid item sm={7}>
-                    <AutocompleteArrayInput optionText="pair:label" {...props} shouldRenderSuggestions={value => value.length > 1} fullWidth />
-                </Grid>
-                <Grid item sm={5} style={{alignSelf: "center"}}>
-                    <AddIcon style={{ backgroundColor:"#026a63", borderRadius: "100%", color: "white" }} onClick={handleOpen} />
+
+                    <AutocompleteArrayInput optionText="pair:label"  shouldRenderSuggestions={value => value.length > 1000} fullWidth {...props} />
+                    <AddIcon style={{ backgroundColor:"#026a63", borderRadius: "100%", color: "white", alignSelf: "center", marginLeft:"2%" }} onClick={handleOpen} />
                     <Typography source="coucou" />
-                </Grid>
-            </Grid>
+
 
             <Dialog fullWidth open={open} onClose={handleClose}>
             <DialogTitle >Aperçu de l'arborescence des thématiques</DialogTitle>
