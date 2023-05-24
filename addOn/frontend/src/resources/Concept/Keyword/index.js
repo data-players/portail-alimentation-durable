@@ -27,7 +27,7 @@ export default {
   },
   translations: {
     fr: {
-      name: 'Mot Clef ||| Mots Clefs',
+      name: 'Mot Clef |||| Mots Clefs',
       fields: {
         'pair:label': 'Titre',
         'pair:comment': 'Courte description',

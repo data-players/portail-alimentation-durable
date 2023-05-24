@@ -2,7 +2,7 @@ import ResourceCreate from "./ResourceCreate";
 import ResourceEdit from './ResourceEdit';
 import ResourceList from './ResourceList';
 import ResourceShow from './ResourceShow';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 
 export default {
   config: {
@@ -10,10 +10,9 @@ export default {
     show: ResourceShow,
     create: ResourceCreate,
     edit: ResourceEdit,
-    icon: LocalOfferIcon,
+    icon: FolderOpenIcon,
     options: {
-      label: 'Resources',
-      parent: 'Concept'
+      label: 'Ressource',
     }
   },
   dataModel: {
@@ -28,7 +27,7 @@ export default {
   },
   translations: {
     fr: {
-      name: 'Resource ||| Resources',
+      name: 'Ressource |||| Ressources',
       fields: {
         'pair:label': 'Titre',
         'pair:comment': 'Courte description',

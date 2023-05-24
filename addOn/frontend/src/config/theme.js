@@ -5,7 +5,7 @@ const defaultTheme = createTheme();
 
 const theme = createTheme({
   palette: {
-    primary: { main: '#28ccfb', contrastText: '#fff' },
+    primary: { main: '#026a63', contrastText: '#fff' },
     secondary: { main: '#bcef5b' },
     grey: { main: '#e0e0e0' }
   },
