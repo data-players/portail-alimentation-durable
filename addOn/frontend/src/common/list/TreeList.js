@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRedirect } from "react-admin";
 import {TreeItem, TreeView} from '@mui/lab';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRight';
@@ -22,8 +23,12 @@ function CustomTreeItem(props) {
 }
 
 const TreeList =({data}) => {
+  const redirect = useRedirect()
   const handleSelect = (event, nodes) => {
-    window.location.replace(nodes);
+    const value = encodeURI(nodes);
+    console.log(value)
+    // redirect('/Theme/'+encodeURI(nodes));
+    // window.location.replace(nodes);
   }
 
   let routeTree = [], listTheme = [];
