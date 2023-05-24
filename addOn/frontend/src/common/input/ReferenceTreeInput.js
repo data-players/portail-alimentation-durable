@@ -3,7 +3,6 @@ import { useRecordContext, AutocompleteArrayInput, useGetList } from "react-admi
 import { Grid, Typography, Box, Button, Modal } from "@mui/material";
 import { Dialog, DialogTitle, DialogActions, makeStyles } from '@material-ui/core';
 import AddIcon from '@mui/icons-material/Add';
-import QuickAppendDialog from '../../resources/Resource/QuickAppendDialog';
 import { TreeItem, TreeView } from '@mui/lab';
 import TreeListCustomContent from '../list/TreeListCustomContent';
 
@@ -86,16 +85,6 @@ const ReferenceTreeInput = (props) => {
                 <Button label="ra.action.close" variant="text" onClick={handleClose} />
             </DialogActions>
             </Dialog>
-            {showDialog && (
-                <QuickAppendDialog
-                    open={showDialog}
-                    onClose={() => setShowDialog(false)}
-                    subjectUri={record.id}
-                    resource={"Theme"}
-                    source={"pair:topicOf"}
-                    reference={"Theme"}
-                />
-            )}
         </div>
     )
 }
