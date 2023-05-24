@@ -25,10 +25,8 @@ function CustomTreeItem(props) {
 const TreeList =({data}) => {
   const redirect = useRedirect()
   const handleSelect = (event, nodes) => {
-    const value = encodeURI(nodes);
-    console.log(value)
-    // redirect('/Theme/'+encodeURI(nodes));
-    // window.location.replace(nodes);
+    const value = encodeURIComponent(nodes);
+    redirect('/Theme/'+value+"/show");
   }
 
   let routeTree = [], listTheme = [];
