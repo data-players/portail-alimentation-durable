@@ -36,11 +36,11 @@ function CustomTreeItem(props) {
   }
 
 const ReferenceTreeInput = (props) => {
-    const record = useRecordContext();
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const { data } = useGetList("Theme", { page: 1, perPage: Infinity });
+    const [inputValue, setInputValue] = useState(props.input.value);
 
     let routeTree = [], allItems = [], nodeIds = [];
     for (const item in data) {
@@ -58,6 +58,7 @@ const ReferenceTreeInput = (props) => {
         handleClose();
     };
 
+    console.log(props.input.value)
     return (
         <div style={{display: "flex"}}>
 

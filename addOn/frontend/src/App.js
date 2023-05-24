@@ -18,7 +18,7 @@ const App = () => (
   <Admin
     disableTelemetry
     history={history}
-    title="Portail De Données Pour l'Alimentation Durable"
+    title="Portail de données pour l'alimentation durable"
     authProvider={authProvider}
     dataProvider={dataProvider}
     i18nProvider={i18nProvider}
