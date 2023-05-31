@@ -14,13 +14,13 @@ export const ResourceEdit = props => {
           <MarkdownInput multiline source="pair:description" fullWidth />
         </FormTab>
         <FormTab label="Thématiques">
-          <ReferenceInput label="Mots Clefs" reference="Keyword" source="pair:keywordOf" >
+          <ReferenceInput label="Mots Clefs" reference="Keyword" source="pair:hasKeyword" >
             <AutocompleteArrayInput optionText="pair:label" fullWidth />
           </ReferenceInput>
           {/* <ReferenceInput label="Thème" reference="Theme" source="pair:topicOf" >
             <AutocompleteArrayInput optionText="pair:label" fullWidth {...props} />
           </ReferenceInput> */}
-          <ReferenceInput label="Sujet de" reference="Theme" source="pair:topicOf" style={{display: "flex"}} >
+          <ReferenceInput label="Sujet de" reference="Theme" source="pair:hasTopic" style={{display: "flex"}} >
             <ReferenceTreeInput {...props} />
           </ReferenceInput>
         </FormTab>
