@@ -3,6 +3,7 @@ export {default as Resource } from './Resource'
 // Concepts
 export { default as Theme } from './Concept/Theme';
 export { default as Keyword } from './Concept/Keyword';
+export { default as Department } from './Concept/Department';
 export { default as Concept } from './Concept/Concept';
 
 // Pages

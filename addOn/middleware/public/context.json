@@ -26,6 +26,12 @@
       "pair:keywordOf": {
         "@type": "@id"
       },
+      "pair:hasDepartment": {
+        "@type": "@id"
+      },
+      "pair:DepartmentOf": {
+        "@type": "@id"
+      },
       "pair:image": {
         "@type": "@id"
       },

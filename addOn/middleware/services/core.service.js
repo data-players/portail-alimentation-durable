@@ -49,7 +49,7 @@ module.exports = {
       'http://localhost:3000/users/simon.louvet.zen',
       'http://localhost:3000/users/bastien.siguier',
       'https://data.portail-alimentation-durable.data-players.com/users/simon.louvet.zen',
-      'https://data.portail-alimentation-durable.data-players.com/users/bastien.siguier1',
+      'https://data.portail-alimentation-durable.data-players.com/users/bastien.siguier',
       'https://data.portail-alimentation-durable.data-players.com/users/tech',
     ]}
   }

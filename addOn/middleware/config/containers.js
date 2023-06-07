@@ -23,6 +23,11 @@ module.exports = [
     acceptedTypes: ['pair:Theme']
   },
   {
+    path: '/departments',
+    preferredView: '/Department',
+    acceptedTypes: ['pair:Department']
+  },
+  {
     path: '/keywords',
     preferredView: '/Keyword',
     acceptedTypes: ['pair:Keyword']
