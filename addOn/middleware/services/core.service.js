@@ -3,6 +3,7 @@ const urlJoin = require("url-join");
 const { CoreService } = require('@semapps/core');
 const CONFIG = require('../config/config');
 const containers = require('../config/containers');
+const ApiGatewayService = require('moleculer-web');
 
 module.exports = {
   mixins: [CoreService],
