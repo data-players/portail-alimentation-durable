@@ -9,7 +9,7 @@ module.exports = {
   settings: {
     baseUrl: CONFIG.HOME_URL,
     baseDir: path.resolve(__dirname, '..'),
-    jsonContext: urlJoin('https://data.portail-alimentation-durable.data-players.com/context.json'),
+    jsonContext: 'https://data.portail-alimentation-durable.data-players.com/context.json',
     triplestore: {
       url: CONFIG.SPARQL_ENDPOINT,
       user: CONFIG.JENA_USER,
@@ -19,6 +19,19 @@ module.exports = {
     containers,
     api: {
       port: CONFIG.PORT,
+      routes: [
+        {
+           path: '/context.json',
+           use: [
+             ApiGatewayService.serveStatic('./public/context.json', {
+               setHeaders: res => {
+                 res.setHeader('Access-Control-Allow-Origin', '*');
+                 res.setHeader('Content-Type', 'application/json; charset=utf-8');
+               }
+             })
+           ]
+       }
+      ]
     },
     ldp: {
       preferredViewForResource: async (resourceUri, containerPreferredView) => {
