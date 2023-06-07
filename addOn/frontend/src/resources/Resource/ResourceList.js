@@ -38,11 +38,11 @@ const ResourceList = props => {
       <Datagrid  >
           <TextField source="pair:label" />
           <TextField source="pair:description" />
-          <ReferenceArrayField label="Thème" reference="Theme" source="pair:hasTopic" >
+          {/* <ReferenceArrayField label="Thème" reference="Theme" source="pair:hasTopic" >
             <SingleFieldList>
               <ChipField source="pair:label" />
             </SingleFieldList>
-          </ReferenceArrayField>
+          </ReferenceArrayField> */}
           <Test />
           {isAuthicate ? <ShowButton /> : null}
       </Datagrid>
