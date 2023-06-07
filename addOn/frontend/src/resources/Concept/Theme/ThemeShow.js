@@ -17,7 +17,7 @@ const ThemeShow = props => (
       </Grid>
       <Grid item xs={12} sm={3}>
         <SideList>
-          <ReferenceArrayField reference="Agent" source="pair:topicOf">
+          <ReferenceArrayField reference="Agent" source="pair:hasTopic">
             <SingleFieldList linkType="show">
               <ChipField source="pair:label" color="secondary" />
             </SingleFieldList>

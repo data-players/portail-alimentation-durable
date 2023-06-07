@@ -12,6 +12,7 @@ export const ResourceEdit = props => {
         <FormTab label="Données">
           <TextInput source="pair:label" fullWidth />
           <MarkdownInput multiline source="pair:description" fullWidth />
+          <TextInput source="pair:homePage" fullWidth/>
         </FormTab>
         <FormTab label="Thématiques">
           <ReferenceInput label="Mots Clefs" reference="Keyword" source="pair:hasKeyword" >

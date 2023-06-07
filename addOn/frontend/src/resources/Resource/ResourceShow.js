@@ -1,5 +1,5 @@
 import React from 'react';
-import { SingleFieldList, ChipField } from 'react-admin';
+import { SingleFieldList, ChipField, UrlField } from 'react-admin';
 import { Grid } from '@material-ui/core';
 import { ReferenceArrayField } from '@semapps/field-components';
 import ResourceTitle from './ResourceTitle';
@@ -13,6 +13,7 @@ const ResourceShow = props => (
       <Grid item xs={12} sm={9}>
         <MainList>
           <MarkdownField source="pair:description" />
+          <UrlField source="pair:homePage" />
         </MainList>
       </Grid>
       <Grid item xs={12} sm={3}>

@@ -9,7 +9,7 @@ module.exports = {
   settings: {
     baseUrl: CONFIG.HOME_URL,
     baseDir: path.resolve(__dirname, '..'),
-    // jsonContext: urlJoin('https://data.portail-alimentation-durable.data-players.com/context.json'),
+    jsonContext: urlJoin('https://data.portail-alimentation-durable.data-players.com/context.json'),
     triplestore: {
       url: CONFIG.SPARQL_ENDPOINT,
       user: CONFIG.JENA_USER,
@@ -37,7 +37,6 @@ module.exports = {
       'https://data.portail-alimentation-durable.data-players.com/users/simon.louvet.zen',
       'https://data.portail-alimentation-durable.data-players.com/users/bastien.siguier1',
       'https://data.portail-alimentation-durable.data-players.com/users/tech',
-    ]
-    }
+    ]}
   }
 };
