@@ -6,7 +6,7 @@ import ResourceFilterSideBar from "./ResourceFilterSideBar";
 import Button from '@mui/material/Button';
 import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser';
 
-const Test = ({record}) => {
+const CustomLinkShowButton = ({record}) => {
   const redirect = useRedirect()
   if (!record ) return null;
   const isNotLinked = !record["pair:homePage"];
@@ -35,7 +35,7 @@ const ResourceList = props => {
   return (
     <List {...props} aside={<ResourceFilterSideBar />} >
       {/* <SimpleList  primaryText={record => record['pair:label']} leftAvatar={() => <LocalOfferIcon />} linkType="show" /> */}
-      <Datagrid  >
+      <Datagrid >
           <TextField source="pair:label" />
           <TextField source="pair:description" />
           {/* <ReferenceArrayField label="Thème" reference="Theme" source="pair:hasTopic" >
@@ -43,7 +43,7 @@ const ResourceList = props => {
               <ChipField source="pair:label" />
             </SingleFieldList>
           </ReferenceArrayField> */}
-          <Test />
+          <CustomLinkShowButton />
           {isAuthicate ? <ShowButton /> : null}
       </Datagrid>
     </List>
