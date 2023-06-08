@@ -22,7 +22,8 @@ const useStyles = makeStyles(theme => ({
   },
   searchBar: {
     padding: "10px",
-    overflow: "visible"
+    overflow: "visible",
+    minWidth: "13%"
   },
 }));
 
