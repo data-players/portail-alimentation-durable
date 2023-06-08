@@ -21,7 +21,8 @@ const useStyles = makeStyles(theme => ({
     paddingTop: 0
   },
   searchBar: {
-    padding: "10px"
+    padding: "10px",
+    overflow: "visible"
   },
 }));
 
