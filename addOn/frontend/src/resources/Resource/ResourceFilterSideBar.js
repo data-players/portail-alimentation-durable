@@ -77,7 +77,7 @@ const ProjectFilterSidebar = () => {
           reference="Theme"
           source="pair:broader"
           label="pair:label"
-          predicate="pair:hasTopic"
+          predicate="http://virtual-assembly.org/ontologies/pair#hasTopic"
           limit={100}
           sort={{ field: 'pair:label', order: 'ASC' }}
         />
