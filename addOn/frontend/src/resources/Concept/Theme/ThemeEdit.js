@@ -1,11 +1,10 @@
 import React from 'react';
-import { FormTab, TabbedForm, TextInput, SelectInput } from 'react-admin';
+import { FormTab, TabbedForm, TextInput } from 'react-admin';
 import { MarkdownInput } from '@semapps/markdown-components';
-import { AgentsInput } from '../../../common/input';
 import Edit from "../../../layout/edit/Edit";
 import ThemeTitle from './ThemeTitle';
 import { ReferenceInput } from '@semapps/input-components';
-import CustomReferenceinput from '../../../common/input/CustomReferenceinput';
+import TreeAutocompleteInput from '../../../common/input/TreeAutocompleteInput';
 
 
 export const ThemeEdit = props => (
@@ -16,11 +15,9 @@ export const ThemeEdit = props => (
         <MarkdownInput multiline source="pair:description" fullWidth />
       </FormTab>
       <FormTab label="Thème Parent">
-        {/* <AgentsInput source="pair:topicOf" /> */}
-        {/* <ReferenceInput label="Thème Parent" reference="Theme" source="pair:broader" >
-          <SelectInput optionText="pair:label" />
-        </ReferenceInput> */}
-       <CustomReferenceinput />
+        <ReferenceInput label="Thème Parent" reference="Theme" source="pair:broader" >
+          <TreeAutocompleteInput optionText="pair:label" source="pair:broader" {...props} />
+        </ReferenceInput>
       </FormTab>
     </TabbedForm>
   </Edit>

@@ -1,9 +1,10 @@
 import React from 'react';
-import { FormTab, TabbedForm, TextInput, ReferenceInput, AutocompleteArrayInput } from 'react-admin';
+import { FormTab, TabbedForm, TextInput, AutocompleteArrayInput } from 'react-admin';
 import { MarkdownInput,  } from '@semapps/markdown-components';
+import { ReferenceArrayInput, ReferenceInput } from '@semapps/input-components';
 import Edit from "../../layout/edit/Edit";
 import ResourceTitle from './ResourceTitle';
-import ReferenceTreeInput from '../../common/input/ReferenceTreeInput';
+import TreeAutocompleteArrayInput from '../../common/input/TreeAutocompleteArrayInput';
 
 export const ResourceEdit = props => {
   return (
@@ -18,12 +19,9 @@ export const ResourceEdit = props => {
           <ReferenceInput label="Mots Clefs" reference="Keyword" source="pair:hasKeyword" >
             <AutocompleteArrayInput optionText="pair:label" fullWidth />
           </ReferenceInput>
-          {/* <ReferenceInput label="Thème" reference="Theme" source="pair:topicOf" >
-            <AutocompleteArrayInput optionText="pair:label" fullWidth {...props} />
-          </ReferenceInput> */}
-          <ReferenceInput label="Sujet de" reference="Theme" source="pair:hasTopic" style={{display: "flex"}} >
-            <ReferenceTreeInput {...props} />
-          </ReferenceInput>
+          <ReferenceArrayInput label="Sujet de" reference="Theme" source="pair:hasTopic" fullWidth >
+            <TreeAutocompleteArrayInput optionText="pair:label" source="pair:broader" {...props} />
+          </ReferenceArrayInput>
         </FormTab>
       </TabbedForm>
     </Edit>

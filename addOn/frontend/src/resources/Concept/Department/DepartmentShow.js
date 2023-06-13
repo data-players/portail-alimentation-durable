@@ -1,6 +1,5 @@
 import React from 'react';
 import { TextField } from 'react-admin';
-import { Grid } from '@material-ui/core';
 import DepartmentTitle from './DepartmentTitle';
 import Show from "../../../layout/show/Show";
 import { MainList } from '../../../common/list';

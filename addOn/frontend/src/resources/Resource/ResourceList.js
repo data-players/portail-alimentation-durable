@@ -1,5 +1,5 @@
 import React from 'react';
-import { Datagrid, TextField, ReferenceArrayField, SingleFieldList, ChipField, ShowButton, useRedirect } from 'react-admin';
+import { Datagrid, TextField, ShowButton, useRedirect } from 'react-admin';
 // import SimpleList from "../../common/list/SimpleList";
 import List from "../../layout/list/List";
 import ResourceFilterSideBar from "./ResourceFilterSideBar";
@@ -23,7 +23,7 @@ const CustomLinkShowButton = ({record}) => {
   return(
     <div >
       <Button style={{color: "#026a63", fontSize: "0.8125rem"}} variant="text" startIcon={<OpenInBrowserIcon />} onClick={handleClick} >
-        LINK
+        LIEN
       </Button>
     </div>
   )
