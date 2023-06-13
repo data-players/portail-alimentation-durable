@@ -1,7 +1,7 @@
 import React from 'react';
-import { FormTab, TabbedForm, TextInput, AutocompleteArrayInput } from 'react-admin';
+import { FormTab, TabbedForm, TextInput, AutocompleteArrayInput, ReferenceInput } from 'react-admin';
 import { MarkdownInput,  } from '@semapps/markdown-components';
-import { ReferenceArrayInput, ReferenceInput } from '@semapps/input-components';
+import { ReferenceArrayInput } from '@semapps/input-components';
 import Edit from "../../layout/edit/Edit";
 import ResourceTitle from './ResourceTitle';
 import TreeAutocompleteArrayInput from '../../common/input/TreeAutocompleteArrayInput';

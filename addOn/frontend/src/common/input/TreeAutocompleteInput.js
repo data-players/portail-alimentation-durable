@@ -39,7 +39,9 @@ const TreeAutocompleteInput = (props) => {
     }
 
     const handleSelect = (event, nodes) => {
-        if (record.id !== nodes) {
+        if (record[props.source] === nodes) {
+            record[props.source] =null;
+        } else if (record.id !== nodes ) {
             record[props.source] = nodes;
         }
         handleClose();
