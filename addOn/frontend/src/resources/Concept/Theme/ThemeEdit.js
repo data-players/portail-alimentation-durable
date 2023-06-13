@@ -6,7 +6,6 @@ import ThemeTitle from './ThemeTitle';
 import { ReferenceInput } from '@semapps/input-components';
 import TreeAutocompleteInput from '../../../common/input/TreeAutocompleteInput';
 
-
 export const ThemeEdit = props => (
   <Edit title={<ThemeTitle />} {...props}>
     <TabbedForm redirect="show">
@@ -16,7 +15,14 @@ export const ThemeEdit = props => (
       </FormTab>
       <FormTab label="Thème Parent">
         <ReferenceInput label="Thème Parent" reference="Theme" source="pair:broader" >
-          <TreeAutocompleteInput optionText="pair:label" source="pair:broader" {...props} />
+          <TreeAutocompleteInput 
+            optionText="pair:label" 
+            treeReference="Theme" 
+            parentProperty="pair:broader" 
+            resettable={true} 
+            shouldRenderSuggestions={value => false} 
+            defaultExpanded={true}
+          />
         </ReferenceInput>
       </FormTab>
     </TabbedForm>

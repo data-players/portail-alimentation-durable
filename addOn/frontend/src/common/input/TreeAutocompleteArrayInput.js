@@ -6,21 +6,29 @@ import AddIcon from '@mui/icons-material/Add';
 import { TreeView } from '@mui/lab';
 import GenerateTreeItem from './GenerateTreeItem';
 
+const buildTreeData = (data, source, defaultExpanded) => {
+    console.log(defaultExpanded)
+    let routeTree = [], allItems = [], expendedNodes = [];
+    for (const item in data) {
+        if(defaultExpanded) {
+            expendedNodes.push(data[item].id);
+        }
+        if (data[item][source] === undefined ) {
+            routeTree.push(data[item]);
+        }
+        allItems = allItems.concat(data[item]);
+    }
+    return {routeTree, allItems, expendedNodes};
+}
+
 const TreeAutocompleteArrayInput = (props) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const { data } = useGetList("Theme", { page: 1, perPage: Infinity });
     const isFullWidth = props.fullWidth === true;
 
-    let routeTree = [], allItems = [], nodeIds = [];
-    for (const item in data) {
-      nodeIds.push(data[item].id);
-      if (data[item][props.source] === undefined ) {
-        routeTree.push(data[item]);
-      }
-      allItems = allItems.concat(data[item]);
-    }
+    const { data } = useGetList("Theme", { page: 1, perPage: Infinity });
+    const treeData = buildTreeData(data, props.source, props.defaultExpanded);
 
     const handleSelect = (event, nodes) => {
         if (props.input.value === undefined ) {
@@ -41,9 +49,9 @@ const TreeAutocompleteArrayInput = (props) => {
                 <TreeView 
                     onNodeSelect={handleSelect} 
                     aria-label="icon expansion"
-                    defaultExpanded={nodeIds}
+                    defaultExpanded={treeData.expendedNodes}
                 >
-                    {GenerateTreeItem(props.source, props.optionText, allItems, routeTree)}
+                    {GenerateTreeItem(props.source, props.optionText, treeData.allItems, treeData.routeTree)}
                 </TreeView >
                 <DialogActions >
                     <Button label="ra.action.close" variant="text" onClick={handleClose} />

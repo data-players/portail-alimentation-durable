@@ -1,64 +1,62 @@
 import React, { useState  } from 'react';
-import { AutocompleteInput, useGetList, useRecordContext } from "react-admin";
+import { AutocompleteInput, useGetList, useRecordContext, choices, getResources } from "react-admin";
 import {  Button } from "@mui/material";
+import { useSelector } from 'react-redux';
 import { Dialog, DialogTitle, DialogActions, makeStyles } from '@material-ui/core';
-import AddIcon from '@mui/icons-material/Add';
-import { TreeView } from '@mui/lab';
-import GenerateTreeItem from './GenerateTreeItem';
+import EditIcon from '@mui/icons-material/Edit';import { TreeView } from '@mui/lab';
+import {generateTreeItem, buildTreeData} from './TreeItemUtils';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 const useStyles = makeStyles(theme => ({
-    addIcon: { 
+    editIcon: { 
         backgroundColor:"#026a63", 
         borderRadius: "100%", 
         color: "white", 
-        alignSelf: "center", 
-        marginLeft:"0.5%" 
     },
-    test: {
-        color: "red"
-    }
 }));
 
 const TreeAutocompleteInput = (props) => {
+    const style = useStyles();
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const { data } = useGetList("Theme", { page: 1, perPage: Infinity });
-    const record = useRecordContext();
-    const style = useStyles();
-    const isFullWidth = props.fullWidth === true;
-    if (!record) return null;
 
-    let routeTree = [], allItems = [], nodeIds = [];
-    for (const item in data) {
-      nodeIds.push(data[item].id);
-      if (data[item][props.source] === undefined ) {
-        routeTree.push(data[item]);
-      }
-      allItems = allItems.concat(data[item]);
-    }
+    //TO DO : expliquer pk on a treeReference => car reference devient choices
+    const { data } = useGetList(props.treeReference, { page: 1, perPage: Infinity });
+
+    const resources = useSelector(getResources);
+    const treeRessource = resources.find(r => r.name === props.treeReference);
+
+    const record = useRecordContext();
+    const isFullWidth = props.fullWidth === true;
 
     const handleSelect = (event, nodes) => {
-        if (record[props.source] === nodes) {
-            record[props.source] =null;
-        } else if (record.id !== nodes ) {
-            record[props.source] = nodes;
-        }
+        props.input.onChange(nodes)
         handleClose();
     };
+
+    if (!record) return null;
+    const treeData = buildTreeData(data, props.source, props.defaultExpanded, record);
     
     return (
-        <div style={isFullWidth ? {display: "flex"} : {display: "inline-flex"}}>
-            <AutocompleteInput optionText={props.optionText} shouldRenderSuggestions={value => value.length > 1000} {...props} />
-            <AddIcon className={style.addIcon} style={!isFullWidth ? {marginLeft: "5%", marginBottom: "7%"} : {marginLeft: "1%", marginBottom: "1%"}} onClick={handleOpen} />
+        <div style={{display: "flex", alignItems: "top"}}>
+            <div style={{flexGrow: isFullWidth ? 1 : 0}}>
+                <AutocompleteInput validate={choices(treeData.validIds, `La selection ne peut pas être l'élément courant`)} {...props} />
+            </div>
+            <div style={{paddingTop: "20px", paddingLeft: "10px"}}>
+             <EditIcon className={style.editIcon} onClick={handleOpen} />
+            </div>
             <Dialog fullWidth open={open} onClose={handleClose}>
-                <DialogTitle >Aperçu de l'arborescence des thématiques</DialogTitle>
+                <DialogTitle >Choix du {treeRessource.options.label} </DialogTitle>
                 <TreeView 
                     onNodeSelect={handleSelect} 
-                    aria-label="icon expansion"
-                    defaultExpanded={nodeIds}
+                    defaultExpanded={treeData.expendedNodes}
+                    defaultCollapseIcon={<ExpandMoreIcon />}
+                    defaultExpandIcon={<ChevronRightIcon />}
                 >
-                    {GenerateTreeItem(props.source, props.optionText, allItems, routeTree, false, props.source)}
+                    {generateTreeItem(props.parentProperty, props.optionText, treeData.allItems, treeData.routeTree, false, props.source)}
                 </TreeView >
                 <DialogActions >
                     <Button label="ra.action.close" variant="text" onClick={handleClose} />
