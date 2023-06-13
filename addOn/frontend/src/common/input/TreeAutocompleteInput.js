@@ -4,7 +4,7 @@ import {  Button } from "@mui/material";
 import { useSelector } from 'react-redux';
 import { Dialog, DialogTitle, DialogActions, makeStyles } from '@material-ui/core';
 import EditIcon from '@mui/icons-material/Edit';import { TreeView } from '@mui/lab';
-import {generateTreeItem, buildTreeData} from './TreeItemUtils';
+import { generateTreeItem, buildTreeData } from './TreeItemUtils';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 

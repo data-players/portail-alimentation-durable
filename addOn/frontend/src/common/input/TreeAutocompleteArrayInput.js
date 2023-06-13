@@ -4,22 +4,7 @@ import {  Button } from "@mui/material";
 import { Dialog, DialogTitle, DialogActions } from '@material-ui/core';
 import AddIcon from '@mui/icons-material/Add';
 import { TreeView } from '@mui/lab';
-import GenerateTreeItem from './GenerateTreeItem';
-
-const buildTreeData = (data, source, defaultExpanded) => {
-    console.log(defaultExpanded)
-    let routeTree = [], allItems = [], expendedNodes = [];
-    for (const item in data) {
-        if(defaultExpanded) {
-            expendedNodes.push(data[item].id);
-        }
-        if (data[item][source] === undefined ) {
-            routeTree.push(data[item]);
-        }
-        allItems = allItems.concat(data[item]);
-    }
-    return {routeTree, allItems, expendedNodes};
-}
+import { generateTreeItem, buildTreeData } from './TreeItemUtils';
 
 const TreeAutocompleteArrayInput = (props) => {
     const [open, setOpen] = useState(false);
@@ -51,7 +36,7 @@ const TreeAutocompleteArrayInput = (props) => {
                     aria-label="icon expansion"
                     defaultExpanded={treeData.expendedNodes}
                 >
-                    {GenerateTreeItem(props.source, props.optionText, treeData.allItems, treeData.routeTree)}
+                    {generateTreeItem(props.source, props.optionText, treeData.allItems, treeData.routeTree)}
                 </TreeView >
                 <DialogActions >
                     <Button label="ra.action.close" variant="text" onClick={handleClose} />
