@@ -53,8 +53,7 @@ const TreeAutocompleteInput = (props) => {
     };
 
     if (!record) return null;
-    const treeData = buildTreeData(data, props.source, props.defaultExpanded, record);
-    
+    const treeData = buildTreeData(data, props.parentProperty, props.defaultExpanded, record);
     return (
         <div style={{display: "flex", alignItems: "top"}}>
             <div style={{flexGrow: isFullWidth ? 1 : 0}}>
