@@ -8,11 +8,26 @@ import { generateTreeItem, buildTreeData } from './TreeItemUtils';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
+/*
+* Exemple :
+*   <ReferenceArrayInput label="Sujet de" reference="Theme" source="pair:hasTopic" fullWidth >
+*   <TreeAutocompleteInput 
+*       optionText="pair:label" // define the text render for eaZch item render
+*       parentProperty="pair:broader"  // define the parent of a node in tree
+*       resettable={true} // true if you want to add a delete icon false to hide it
+*       treeReference="Theme" // same as reference from ReferenceArrayInput, but react admin transform the reference to choices aray and don't call TreeAutocompleteArrayInput whit reference props. treeReference specify resource used to build tree.
+*       shouldRenderSuggestions={value => false} // shouldRenderSuggestions RA . can be set to common shouldRenderSuggestions function if you want user use sugestion
+*       defaultExpanded={true} // boolean to expand or not the treeItem selector 
+*   />
+*   </ReferenceArrayInput>
+*/
+
 const useStyles = makeStyles(theme => ({
     editIcon: { 
         backgroundColor:"#026a63", 
-        borderRadius: "100%", 
-        color: "white", 
+        borderRadius: "25%", 
+        color: "white",
+        height: "25px"
     },
 }));
 
@@ -56,7 +71,7 @@ const TreeAutocompleteInput = (props) => {
                     defaultCollapseIcon={<ExpandMoreIcon />}
                     defaultExpandIcon={<ChevronRightIcon />}
                 >
-                    {generateTreeItem(props.parentProperty, props.optionText, treeData.allItems, treeData.routeTree, false, props.source)}
+                    {generateTreeItem(props.parentProperty, props.optionText, treeData.allItems, treeData.routeTree, false, [])}
                 </TreeView >
                 <DialogActions >
                     <Button label="ra.action.close" variant="text" onClick={handleClose} />

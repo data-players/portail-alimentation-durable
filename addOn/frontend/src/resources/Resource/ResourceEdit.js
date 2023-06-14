@@ -20,7 +20,13 @@ export const ResourceEdit = props => {
             <AutocompleteArrayInput optionText="pair:label" fullWidth />
           </ReferenceInput>
           <ReferenceArrayInput label="Sujet de" reference="Theme" source="pair:hasTopic" fullWidth >
-            <TreeAutocompleteArrayInput optionText="pair:label" source="pair:broader" {...props} />
+            <TreeAutocompleteArrayInput 
+              optionText="pair:label" 
+              parentProperty="pair:broader" 
+              treeReference="Theme" 
+              shouldRenderSuggestions={value => false} 
+              defaultExpanded={true}
+            />
           </ReferenceArrayInput>
         </FormTab>
       </TabbedForm>

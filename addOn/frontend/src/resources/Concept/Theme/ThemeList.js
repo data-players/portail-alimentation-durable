@@ -4,8 +4,8 @@ import List from "../../../layout/list/List";
 import TreeList from '../../../common/list/TreeList';
 
 const ThemeList = props => (
-  <List {...props}>
-    <TreeList />
+  <List perPage={1000} {...props}>
+    <TreeList source="pair:broader" label="pair:label" />
   </List>
 );
 

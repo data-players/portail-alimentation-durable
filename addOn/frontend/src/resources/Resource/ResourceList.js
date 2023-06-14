@@ -34,15 +34,9 @@ const ResourceList = props => {
 
   return (
     <List {...props} aside={<ResourceFilterSideBar />} >
-      {/* <SimpleList  primaryText={record => record['pair:label']} leftAvatar={() => <LocalOfferIcon />} linkType="show" /> */}
       <Datagrid >
           <TextField source="pair:label" />
           <TextField source="pair:description" />
-          {/* <ReferenceArrayField label="Thème" reference="Theme" source="pair:hasTopic" >
-            <SingleFieldList>
-              <ChipField source="pair:label" />
-            </SingleFieldList>
-          </ReferenceArrayField> */}
           <CustomLinkShowButton />
           {isAuthicate ? <ShowButton /> : null}
       </Datagrid>

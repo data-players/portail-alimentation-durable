@@ -6,21 +6,27 @@ function CustomTreeItem(props) {
     return <TreeItem ContentComponent={TreeListCustomContent} {...props} />;
 }
 
-const generateTreeItem = (source, label, allItems, routeTree, parentId) => {
-
+const generateTreeItem = (parentProperty, optionText, allItems, routeTree, parentId, dejavueItem) => {
     const isParentLevel = !parentId;
-    const listToUse = isParentLevel ? routeTree : allItems.filter(({ [source]: itemSource }) => itemSource === parentId);
-    
+    const listToUse = isParentLevel ? routeTree : allItems.filter(({ [parentProperty]: itemParentProperty }) => itemParentProperty === parentId);
     return (
-        listToUse.map((route) =>
-        <CustomTreeItem 
-            nodeId={route["id"]} 
-            label={route[label]} 
-            key={route["id"]} style={route["selected"] ? {color: "#026a63" } : null }
-        >
-            {generateTreeItem(source, label, allItems, [], route["id"])}
-        </CustomTreeItem>
-        )
+        listToUse.map((route) => {
+            
+            const test = dejavueItem.filter(item => item === route.id)
+            if (test.length < 1) {
+                dejavueItem.push(route.id)
+
+                return (
+                    <CustomTreeItem 
+                        nodeId={route["id"]} 
+                        label={route[optionText]} 
+                        key={route["id"]} style={route["selected"] ? {color: "#026a63" } : null }
+                    >
+                        {generateTreeItem(parentProperty, optionText, allItems, [], route["id"], [...dejavueItem])}
+                    </CustomTreeItem>
+                )
+            }
+        })
     )
 }
 
