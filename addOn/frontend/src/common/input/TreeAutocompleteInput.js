@@ -1,5 +1,5 @@
 import React, { useState  } from 'react';
-import { AutocompleteInput, useGetList, useRecordContext, choices, getResources } from "react-admin";
+import { AutocompleteInput, useGetList, useRecordContext, getResources } from "react-admin";
 import {  Button } from "@mui/material";
 import { useSelector } from 'react-redux';
 import { Dialog, DialogTitle, DialogActions, makeStyles } from '@material-ui/core';
@@ -57,7 +57,7 @@ const TreeAutocompleteInput = (props) => {
     return (
         <div style={{display: "flex", alignItems: "top"}}>
             <div style={{flexGrow: isFullWidth ? 1 : 0}}>
-                <AutocompleteInput validate={choices(treeData.validIds, `La selection ne peut pas être l'élément courant`)} {...props} />
+                <AutocompleteInput {...props} />
             </div>
             <div style={{paddingTop: "20px", paddingLeft: "10px"}}>
              <EditIcon className={style.editIcon} onClick={handleOpen} />
