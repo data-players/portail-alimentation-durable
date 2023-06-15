@@ -5,7 +5,7 @@ import TreeList from '../../../common/list/TreeList';
 
 const ThemeList = props => (
   <List perPage={1000} {...props}>
-    <TreeList source="pair:broader" label="pair:label" />
+    <TreeList source="pair:broader" label="pair:label" defaultExpanded={false} />
   </List>
 );
 
