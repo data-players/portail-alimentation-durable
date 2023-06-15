@@ -7,8 +7,8 @@ import { ReferenceInput } from '@semapps/input-components';
 import TreeAutocompleteInput from '../../../common/input/TreeAutocompleteInput';
 
 export const ThemeEdit = props => {
-  const themes = Object.entries(useGetList("Theme", { page: 1, perPage: Infinity }))[1][1].filter((theme => theme !== props.id));;
-  
+  const validateIds = useGetList("Theme", { page: 1, perPage: Infinity }).ids.filter((theme => theme !== props.id));
+
   return (
     <Edit title={<ThemeTitle />} {...props}>
       <TabbedForm redirect="show">
@@ -25,7 +25,7 @@ export const ThemeEdit = props => {
               resettable={true} 
               shouldRenderSuggestions={value => false} 
               defaultExpanded={true}
-              validate={choices(themes, `La selection ne peut pas être l'élément courant`)}
+              validate={choices(validateIds, `La selection ne peut pas être l'élément courant`)}
             />
           </ReferenceInput>
         </FormTab>

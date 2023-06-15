@@ -30,7 +30,7 @@ const generateTreeItem = (parentProperty, optionText, allItems, routeTree, paren
     )
 }
 
-const buildTreeData = (data, source, defaultExpanded, record) => {
+const buildTreeData = (data, source, defaultExpanded) => {
     let routeTree = [], allItems = [], expendedNodes = [], validIds = [];
     for (const item in data) {
         if (defaultExpanded) {
@@ -39,12 +39,9 @@ const buildTreeData = (data, source, defaultExpanded, record) => {
         if (data[item][source] === undefined ) {
             routeTree.push(data[item]);
         }
-        if (item !== record.id) {
-            validIds.push(item);
-        }
         allItems = allItems.concat(data[item]);
     }
-    return {routeTree, allItems, expendedNodes, validIds};
+    return {routeTree, allItems, expendedNodes};
 }
 
 const buildTreeListData = (data) => {

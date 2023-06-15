@@ -1,5 +1,5 @@
 import React, { useState  } from 'react';
-import { AutocompleteArrayInput, useGetList, getResources, useRecordContext } from "react-admin";
+import { AutocompleteArrayInput, useGetList, getResources } from "react-admin";
 import {  Button } from "@mui/material";
 import { useSelector } from 'react-redux';
 import { Dialog, DialogTitle, DialogActions, makeStyles } from '@material-ui/core';
@@ -44,7 +44,6 @@ const TreeAutocompleteArrayInput = (props) => {
     const treeRessource = resources.find(r => r.name === props.treeReference);
 
     const isFullWidth = props.fullWidth === true;
-    const record = useRecordContext();
 
     const handleSelect = (event, nodes) => {
         if (props.input.value === undefined ) {
@@ -56,8 +55,7 @@ const TreeAutocompleteArrayInput = (props) => {
         handleClose();
     };
 
-    if (!record) return null;
-    const treeData = buildTreeData(data, props.parentProperty, props.defaultExpanded, record);
+    const treeData = buildTreeData(data, props.parentProperty, props.defaultExpanded);
 
     return (
         <div style={{display: "flex", alignItems: "top"}}>
