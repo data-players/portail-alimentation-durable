@@ -38,7 +38,6 @@ const TreeAutocompleteInput = (props) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    //TO DO : expliquer pk on a treeReference => car reference devient choices
     const { data } = useGetList(props.treeReference, { page: 1, perPage: Infinity });
 
     const resources = useSelector(getResources);
