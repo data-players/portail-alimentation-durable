@@ -13,11 +13,11 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 * Exemple :
 *   <ReferenceArrayInput label="Sujet de" reference="Theme" source="pair:hasTopic" fullWidth >
 *   <TreeAutocompleteArrayInput 
-*       optionText="pair:label" // define the text render for eaZch item render
+*       optionText="pair:label" // define the text render for each item render
 *       parentProperty="pair:broader"  // define the parent of a node in tree
 *       treeReference="Theme" // same as reference from ReferenceArrayInput, but react admin transform the reference to choices aray and don't call TreeAutocompleteArrayInput whit reference props. treeReference specify resource used to build tree.
 *       shouldRenderSuggestions={value => false} // shouldRenderSuggestions RA . can be set to common shouldRenderSuggestions function if you want user use sugestion
-*       defaultExpanded={true} // boolean to expand or not the treeItem selector 
+*       defaultExpanded={true} // boolean to default expand or not the treeItem selector when modal opening
 *   />
 *   </ReferenceArrayInput>
 */
