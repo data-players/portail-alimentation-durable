@@ -44,16 +44,4 @@ const buildTreeData = (data, source, defaultExpanded) => {
     return {routeTree, allItems, expendedNodes};
 }
 
-const buildTreeListData = (data) => {
-    let routeTree = [], allItems = [];
-    for (const theme in data) {
-      if (data[theme]['pair:broader'] === undefined ) {
-        routeTree.push(data[theme]);
-      }
-      allItems = allItems.concat(data[theme]);
-    }
-  
-    return {routeTree, allItems};
-}
-
-export { generateTreeItem, buildTreeData, buildTreeListData } 
+export { generateTreeItem, buildTreeData } 

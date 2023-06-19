@@ -3,7 +3,7 @@ import { useRedirect } from "react-admin";
 import { TreeView } from '@mui/lab';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRight';
-import { buildTreeData, buildTreeListData, generateTreeItem } from '../input/TreeItemUtils';
+import { buildTreeData, generateTreeItem } from '../input/TreeItemUtils';
 
 
 const TreeList =({data, source, label, defaultExpanded = true}) => {
