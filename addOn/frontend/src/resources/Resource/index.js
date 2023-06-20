@@ -2,7 +2,7 @@ import ResourceCreate from "./ResourceCreate";
 import ResourceEdit from './ResourceEdit';
 import ResourceList from './ResourceList';
 import ResourceShow from './ResourceShow';
-import FolderOpenIcon from '@mui/icons-material/FolderOpen';
+import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 
 export default {
   config: {

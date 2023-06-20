@@ -1,13 +1,12 @@
 import React, { useState  } from 'react';
 import { AutocompleteArrayInput, useGetList, getResources } from "react-admin";
-import {  Button } from "@mui/material";
 import { useSelector } from 'react-redux';
-import { Dialog, DialogTitle, DialogActions, makeStyles } from '@material-ui/core';
-import EditIcon from '@mui/icons-material/Edit';
-import { TreeView } from '@mui/lab';
+import { Dialog, DialogTitle, DialogActions, makeStyles, Button } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
+import { TreeView } from '@material-ui/lab';
 import { generateTreeItem, buildTreeData } from './TreeItemUtils';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 /*
 * Exemple :
@@ -29,6 +28,9 @@ const useStyles = makeStyles(theme => ({
         color: "white",
         height: "25px"
     },
+    TreeStyle: {
+        paddingLeft: "15px"
+    }
 }));
 
 const TreeAutocompleteArrayInput = (props) => {
@@ -38,7 +40,7 @@ const TreeAutocompleteArrayInput = (props) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const { data } = useGetList("Theme", { page: 1, perPage: Infinity });
+    const { data } = useGetList(props.treeReference, { page: 1, perPage: Infinity });
     
     const resources = useSelector(getResources);
     const treeRessource = resources.find(r => r.name === props.treeReference);
@@ -46,9 +48,10 @@ const TreeAutocompleteArrayInput = (props) => {
     const isFullWidth = props.fullWidth === true;
 
     const handleSelect = (event, nodes) => {
+        console.log(nodes)
         if (props.input.value === undefined ) {
             props.input.onChange([nodes]);
-        } else if (!props.input.value.includes(nodes)){
+        } else if (!props.input.value.includes(nodes.id)){
             const newVal = [...(props.input.value), nodes]
             props.input.onChange(newVal)
         }
@@ -68,12 +71,12 @@ const TreeAutocompleteArrayInput = (props) => {
             <Dialog fullWidth open={open} onClose={handleClose}>
                 <DialogTitle >Choix du {treeRessource.options.label}</DialogTitle>
                 <TreeView 
-                    onNodeSelect={handleSelect} 
                     defaultExpanded={treeData.expendedNodes}
                     defaultCollapseIcon={<ExpandMoreIcon />}
                     defaultExpandIcon={<ChevronRightIcon />}
+                    className={style.TreeStyle}
                 >
-                    {generateTreeItem(props.parentProperty, props.optionText, treeData.allItems, treeData.routeTree, false, [])}
+                    {generateTreeItem(props.parentProperty, props.optionText, treeData.allItems, treeData.routeTree, false, [], handleSelect)}
                 </TreeView >
                 <DialogActions >
                     <Button label="ra.action.close" variant="text" onClick={handleClose} />

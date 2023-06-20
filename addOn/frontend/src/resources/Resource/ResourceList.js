@@ -3,8 +3,8 @@ import { Datagrid, TextField, ShowButton, useRedirect } from 'react-admin';
 // import SimpleList from "../../common/list/SimpleList";
 import List from "../../layout/list/List";
 import ResourceFilterSideBar from "./ResourceFilterSideBar";
-import Button from '@mui/material/Button';
-import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser';
+import { Button } from '@material-ui/core';
+import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
 
 const CustomLinkShowButton = ({record}) => {
   const redirect = useRedirect()

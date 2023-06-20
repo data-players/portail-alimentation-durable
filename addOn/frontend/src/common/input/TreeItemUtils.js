@@ -1,12 +1,7 @@
 import React from "react";
-import { TreeItem } from '@mui/lab';
-import TreeListCustomContent from '../list/TreeListCustomContent';
+import { TreeItem } from '@material-ui/lab';
 
-function CustomTreeItem(props) {
-    return <TreeItem ContentComponent={TreeListCustomContent} {...props} />;
-}
-
-const generateTreeItem = (parentProperty, optionText, allItems, routeTree, parentId, dejavueItem) => {
+const generateTreeItem = (parentProperty, optionText, allItems, routeTree, parentId, dejavueItem, onLabelClick) => {
     const isParentLevel = !parentId;
     const listToUse = isParentLevel ? routeTree : allItems.filter(({ [parentProperty]: itemParentProperty }) => itemParentProperty === parentId);
     return (
@@ -17,13 +12,14 @@ const generateTreeItem = (parentProperty, optionText, allItems, routeTree, paren
                 dejavueItem.push(route.id)
 
                 return (
-                    <CustomTreeItem 
+                    <TreeItem 
                         nodeId={route["id"]} 
                         label={route[optionText]} 
-                        key={route["id"]} style={route["selected"] ? {color: "#026a63" } : null }
+                        onLabelClick={e => onLabelClick(e, route )}
+                        // key={route["id"]} style={route["selected"] ? {color: "#026a63" } : null }
                     >
-                        {generateTreeItem(parentProperty, optionText, allItems, [], route["id"], [...dejavueItem])}
-                    </CustomTreeItem>
+                        {generateTreeItem(parentProperty, optionText, allItems, [], route["id"], [...dejavueItem], onLabelClick)}
+                    </TreeItem>
                 )
             }
         })

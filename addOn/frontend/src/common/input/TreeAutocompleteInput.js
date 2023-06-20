@@ -1,13 +1,13 @@
 import React, { useState  } from 'react';
 import { AutocompleteInput, useGetList, getResources } from "react-admin";
-import {  Button } from "@mui/material";
+import Button from '@material-ui/core/Button';
 import { useSelector } from 'react-redux';
+import TreeView from '@material-ui/lab/TreeView';
 import { Dialog, DialogTitle, DialogActions, makeStyles } from '@material-ui/core';
-import EditIcon from '@mui/icons-material/Edit';import { TreeView } from '@mui/lab';
+import EditIcon from '@material-ui/icons/Edit';
 import { generateTreeItem, buildTreeData } from './TreeItemUtils';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 /*
 * Exemple :
 *   <ReferenceArrayInput label="Sujet de" reference="Theme" source="pair:hasTopic" fullWidth >
@@ -28,6 +28,9 @@ const useStyles = makeStyles(theme => ({
         borderRadius: "25%", 
         color: "white",
         height: "25px"
+    },
+    treeStyle: {
+        paddingLeft: "15px"
     },
 }));
 
@@ -66,8 +69,9 @@ const TreeAutocompleteInput = (props) => {
                     defaultExpanded={treeData.expendedNodes}
                     defaultCollapseIcon={<ExpandMoreIcon />}
                     defaultExpandIcon={<ChevronRightIcon />}
+                    className={style.treeStyle}
                 >
-                    {generateTreeItem(props.parentProperty, props.optionText, treeData.allItems, treeData.routeTree, false, [])}
+                    {generateTreeItem(props.parentProperty, props.optionText, treeData.allItems, treeData.routeTree, false, [], handleSelect)}
                 </TreeView >
                 <DialogActions >
                     <Button label="ra.action.close" variant="text" onClick={handleClose} />
