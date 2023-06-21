@@ -41,18 +41,16 @@ const TreeAutocompleteArrayInput = (props) => {
     const handleClose = () => setOpen(false);
 
     const { data } = useGetList(props.treeReference, { page: 1, perPage: Infinity });
-    
     const resources = useSelector(getResources);
     const treeRessource = resources.find(r => r.name === props.treeReference);
 
     const isFullWidth = props.fullWidth === true;
 
     const handleSelect = (event, nodes) => {
-        console.log(nodes)
-        if (props.input.value === undefined ) {
-            props.input.onChange([nodes]);
+        if (props.input.value === undefined) {
+            props.input.onChange([nodes.id]);
         } else if (!props.input.value.includes(nodes.id)){
-            const newVal = [...(props.input.value), nodes]
+            const newVal = [...(props.input.value), nodes.id]
             props.input.onChange(newVal)
         }
         handleClose();
