@@ -19,7 +19,7 @@ export default {
     types: ['pair:Resource'],
     list: {
       servers: '@default',
-      forceArray: ['pair:hasTopic', 'pair:hasKeyword']
+      forceArray: ['pair:hasTopic', 'pair:hasKeyword', 'pair:hasDepartment']
     },
     fieldsMapping: {
       title: 'pair:label'
@@ -34,7 +34,9 @@ export default {
         'pair:description': 'Description',
         'pair:hasTopic': 'Sujet de',
         'pair:hasKeyword': "Mots clefs",
-        'pair:homePage' : "Lien de la ressource"
+        'pair:homePage' : "Lien de la ressource",
+        'pair:hasDepartment' : "Départements",
+        'pair:hasDatasource' : "Source de données"
       }
     }
   }

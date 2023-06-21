@@ -28,6 +28,16 @@ const ResourceShow = props => (
               <ChipField source="pair:label" color="secondary" />
             </SingleFieldList>
           </ReferenceArrayField>
+          <ReferenceArrayField reference="Department" source="pair:hasDepartment">
+            <SingleFieldList linkType="show">
+              <ChipField source="pair:label" color="secondary" />
+            </SingleFieldList>
+          </ReferenceArrayField>
+          <ReferenceArrayField reference="Datasource" source="pair:hasDatasource">
+            <SingleFieldList linkType="show">
+              <ChipField source="pair:label" color="secondary" />
+            </SingleFieldList>
+          </ReferenceArrayField>
         </SideList>
       </Grid>
     </Grid>

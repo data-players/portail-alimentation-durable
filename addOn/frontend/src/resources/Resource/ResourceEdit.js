@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormTab, TabbedForm, TextInput, AutocompleteArrayInput, ReferenceInput } from 'react-admin';
+import { FormTab, TabbedForm, TextInput, AutocompleteArrayInput, ReferenceInput, AutocompleteInput } from 'react-admin';
 import { MarkdownInput,  } from '@semapps/markdown-components';
 import { ReferenceArrayInput } from '@semapps/input-components';
 import Edit from "../../layout/edit/Edit";
@@ -28,6 +28,18 @@ export const ResourceEdit = props => {
               defaultExpanded={true}
             />
           </ReferenceArrayInput>
+          <ReferenceInput label="Départements" reference="Department" source="pair:hasDepartment" fullWidth >
+            <TreeAutocompleteArrayInput
+              optionText="pair:label"
+              parentProperty="pair:broader"
+              treeReference="Department"
+              shouldRenderSuggestions={value => false} 
+              defaultExpanded={true}
+            />
+          </ReferenceInput>
+          <ReferenceInput label="Source de donnée" reference="Datasource" source="pair:hasDatasource" >
+            <AutocompleteInput optionText="pair:label" fullWidth />
+          </ReferenceInput>
         </FormTab>
       </TabbedForm>
     </Edit>

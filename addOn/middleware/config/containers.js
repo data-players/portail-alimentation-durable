@@ -28,6 +28,11 @@ module.exports = [
     acceptedTypes: ['pair:Department']
   },
   {
+    path: '/datasources',
+    preferredView: '/Datasource',
+    acceptedTypes: ['pair:Datasource']
+  },
+  {
     path: '/keywords',
     preferredView: '/Keyword',
     acceptedTypes: ['pair:Keyword']

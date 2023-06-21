@@ -32,6 +32,9 @@
       "pair:DepartmentOf": {
         "@type": "@id"
       },
+      "pair:Department": {
+        "@type": "@id"
+      },
       "pair:image": {
         "@type": "@id"
       },
