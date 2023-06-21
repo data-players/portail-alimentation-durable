@@ -23,7 +23,11 @@ const useStyles = makeStyles(theme => ({
   searchBar: {
     padding: "10px",
     overflow: "visible",
-    minWidth: "13%"
+    minWidth: "14%",
+    [theme.breakpoints.down('xs')]: {
+      minWidth: "25%",
+    }
+
   },
 }));
 
@@ -80,6 +84,21 @@ const ProjectFilterSidebar = () => {
           source="pair:broader"
           label="pair:label"
           predicate="http://virtual-assembly.org/ontologies/pair#hasTopic"
+          limit={100}
+          sort={{ field: 'pair:label', order: 'ASC' }}
+        />
+        <ReferenceFilter
+          reference="Datasource"
+          source="pair:hasDatasource"
+          limit={100}
+          showCounters={false}
+          sort={{ field: 'pair:label', order: 'DESC' }}
+        /> 
+        <ReferenceFilterTree
+          reference="Department"
+          source="pair:broader"
+          label="pair:label"
+          predicate="http://virtual-assembly.org/ontologies/pair#hasDepartment"
           limit={100}
           sort={{ field: 'pair:label', order: 'ASC' }}
         />

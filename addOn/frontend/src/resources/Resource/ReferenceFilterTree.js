@@ -145,8 +145,10 @@ const ReferenceFilterTree = ({ reference, source, label, limit, sort, filter, ic
   
   return (
     <div>
-      <LabelIcon style={{ color: 'black',  }} />
-      {reference}
+      <div style={{display: "flex", alignItems: "center"}}>
+        <LabelIcon style={{ color: 'black' }} />
+        {reference}
+      </div>
       <TreeView
         multiSelect
         onNodeSelect={handleSelect}

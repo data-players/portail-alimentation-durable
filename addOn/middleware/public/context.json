@@ -29,10 +29,16 @@
       "pair:hasDepartment": {
         "@type": "@id"
       },
-      "pair:DepartmentOf": {
+      "pair:departmentOf": {
         "@type": "@id"
       },
       "pair:Department": {
+        "@type": "@id"
+      },
+      "pair:datasourceOf": {
+        "@type": "@id"
+      },
+      "pair:hasDatasource": {
         "@type": "@id"
       },
       "pair:image": {
