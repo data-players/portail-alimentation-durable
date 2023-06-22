@@ -28,14 +28,8 @@ export const ResourceEdit = props => {
               defaultExpanded={true}
             />
           </ReferenceArrayInput>
-          <ReferenceInput label="Départements" reference="Department" source="pair:hasDepartment" fullWidth >
-            <TreeAutocompleteArrayInput
-              optionText="pair:label"
-              parentProperty="pair:broader"
-              treeReference="Department"
-              shouldRenderSuggestions={value => false} 
-              defaultExpanded={true}
-            />
+          <ReferenceInput label="Département" reference="Department" source="pair:hasDepartment" >
+            <AutocompleteArrayInput optionText="pair:label" fullWidth />
           </ReferenceInput>
           <ReferenceInput label="Source de donnée" reference="Datasource" source="pair:hasDatasource" >
             <AutocompleteInput optionText="pair:label" fullWidth />
