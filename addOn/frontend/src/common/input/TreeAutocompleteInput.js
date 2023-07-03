@@ -65,7 +65,6 @@ const TreeAutocompleteInput = (props) => {
             <Dialog fullWidth open={open} onClose={handleClose}>
                 <DialogTitle >Choix du {treeRessource.options.label} </DialogTitle>
                 <TreeView 
-                    onNodeSelect={handleSelect} 
                     defaultExpanded={treeData.expendedNodes}
                     defaultCollapseIcon={<ExpandMoreIcon />}
                     defaultExpandIcon={<ChevronRightIcon />}
