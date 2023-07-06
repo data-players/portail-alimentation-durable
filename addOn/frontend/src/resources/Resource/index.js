@@ -12,7 +12,7 @@ export default {
     edit: ResourceEdit,
     icon: FolderOpenIcon,
     options: {
-      label: 'Ressource',
+      label: 'Ressources',
     }
   },
   dataModel: {

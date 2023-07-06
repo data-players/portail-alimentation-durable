@@ -12,7 +12,7 @@ export default {
     edit: KeywordEdit,
     icon: LocalOfferIcon,
     options: {
-      label: 'Mots Clés',
+      label: 'Mots clés',
       parent: 'Concept'
     }
   },
@@ -27,7 +27,7 @@ export default {
   },
   translations: {
     fr: {
-      name: 'Mot Clé |||| Mots Clés',
+      name: 'Mot clé |||| Mots clés',
       fields: {
         'pair:label': 'Titre',
         'pair:comment': 'Courte description',

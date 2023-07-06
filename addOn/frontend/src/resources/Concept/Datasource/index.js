@@ -12,7 +12,7 @@ export default {
     edit: DatasourceEdit,
     icon: LocalOfferIcon,
     options: {
-      label: 'Source de Donnée',
+      label: 'Sources de donnée',
       parent: 'Concept'
     }
   },
@@ -27,7 +27,7 @@ export default {
   },
   translations: {
     fr: {
-      name: 'Source de Donnée |||| Sources de Données',
+      name: 'Source de donnée |||| Sources de données',
       fields: {
         'pair:label': 'Titre',
         'pair:region': "Région",

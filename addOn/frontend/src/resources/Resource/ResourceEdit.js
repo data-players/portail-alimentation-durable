@@ -15,7 +15,7 @@ export const ResourceEdit = props => {
           <MarkdownInput multiline source="pair:description" fullWidth />
           <TextInput source="pair:homePage" fullWidth/>
         </FormTab>
-        <FormTab label="Thématiques">
+        <FormTab label="Relations">
           <ReferenceInput label="Mots Clefs" reference="Keyword" source="pair:hasKeyword" >
             <AutocompleteArrayInput optionText="pair:label" fullWidth />
           </ReferenceInput>

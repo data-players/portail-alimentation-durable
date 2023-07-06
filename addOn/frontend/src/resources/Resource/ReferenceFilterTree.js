@@ -2,10 +2,9 @@ import React from 'react';
 import { useGetList } from 'react-admin';
 import {TreeItem, TreeView} from '@material-ui/lab';
 import { useListFilterContext } from 'ra-core';
-import LabelIcon from '@material-ui/icons/Label';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';import clsx from 'clsx';
-import Typography from '@material-ui/core/Typography';
 
 /**
  * @example
@@ -31,82 +30,16 @@ function GenerateTreeItem(source, label, allItems, routeTree, parentId) {
   const listToUse = isParentLevel ? routeTree : allItems.filter(({ [source]: itemSource }) => itemSource === parentId);
   return (
     listToUse.map((route) =>
-      <CustomTreeItem nodeId={route["id"]} label={route[label]} key={route["id"]}>
+      <TreeItem nodeId={route["id"]} label={route[label]} key={route["id"]} 
+        style={{fontFamily: "Roboto, Helvetica, Arial, sans-serif", fontSize: "0.875rem", lineHeight: "1.43", letterSpacing: "0.01071em"}}
+      >
         {GenerateTreeItem(source, label, allItems, [], route["id"])}
-      </CustomTreeItem>
+      </TreeItem>
     )
   )
 }
-
-// const CustomContent = React.forwardRef(function CustomContent(props, ref) {
-//   const {
-//     classes,
-//     className,
-//     label,
-//     nodeId,
-//     icon: iconProp,
-//     expansionIcon,
-//     displayIcon,
-//   } = props;
-
-//   // const {
-//   //   disabled,
-//   //   expanded,
-//   //   selected,
-//   //   focused,
-//   //   handleExpansion,
-//   //   handleSelection,
-//   //   preventSelection,
-//   // } = useTreeItem(nodeId);
-
-//   const icon = iconProp || expansionIcon || displayIcon;
-
-//   const handleMouseDown = (event) => {
-//     preventSelection(event);
-//   };
-
-//   const handleExpansionClick = (event) => {
-//     handleExpansion(event);
-//   };
-
-//   const handleSelectionClick = (event) => {
-//     handleSelection(event);
-//   };
-
-//   return (
-//     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-//     <div
-//       className={clsx(className, classes.root, {
-//         [classes.expanded]: expanded,
-//         [classes.selected]: selected,
-//         [classes.focused]: focused,
-//         [classes.disabled]: disabled,
-//       })}
-//       onMouseDown={handleMouseDown}
-//       ref={ref}
-//     >
-//       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-//       <div onClick={handleExpansionClick} className={classes.iconContainer}>
-//         {icon}
-//       </div>
-//       <Typography
-//         onClick={handleSelectionClick}
-//         component="div"
-//         className={classes.label}
-//       >
-//         {label}
-//       </Typography>
-//     </div>
-//   );
-// });
   
-function CustomTreeItem(props) {
-  return <TreeItem 
-    
-  {...props} />;
-}
-  
-const ReferenceFilterTree = ({ reference, source, label, limit, sort, filter, icon, predicate }) => {
+const ReferenceFilterTree = ({ reference, source, label, limit, sort, filter, icon, predicate, title }) => {
   const { data } = useGetList(reference, { page: 1, perPage: Infinity }, sort, filter);
   const { filterValues, setFilters } = useListFilterContext();
 
@@ -144,10 +77,12 @@ const ReferenceFilterTree = ({ reference, source, label, limit, sort, filter, ic
   }
   
   return (
-    <div>
+    <div style= {{marginTop: "16px"}}>
       <div style={{display: "flex", alignItems: "center"}}>
-        <LabelIcon style={{ color: 'black' }} />
-        {reference}
+        <LocalOfferIcon style={{ color: 'black', marginRight: "8px" }} />
+        <div style={{fontFamily: "Roboto, Helvetica, Arial, sans-serif", fontSize: "0.75rem", letterSpacing: "0.08333em"}}>
+          {title != undefined ? title.toUpperCase(): reference.toUpperCase()}
+        </div>
       </div>
       <TreeView
         multiSelect
@@ -155,6 +90,7 @@ const ReferenceFilterTree = ({ reference, source, label, limit, sort, filter, ic
         aria-label="icon expansion"
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
+        style={{paddingLeft:"10px"}}
       >
         {GenerateTreeItem(source, label, allItems, routeTree)}
       </TreeView>
