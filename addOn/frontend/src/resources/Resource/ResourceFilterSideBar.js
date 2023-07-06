@@ -62,7 +62,7 @@ const ProjectFilterSidebar = () => {
         <ReferenceAutocompleteFilter 
           optionText="pair:label" 
           resettable={true}  
-          suggestionLimit={2}
+          suggestionLimit={5}
           label="Département"
           reference="Department" 
           source="pair:hasDepartment"
