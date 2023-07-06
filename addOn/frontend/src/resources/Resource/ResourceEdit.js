@@ -14,6 +14,7 @@ export const ResourceEdit = props => {
           <TextInput source="pair:label" fullWidth />
           <MarkdownInput multiline source="pair:description" fullWidth />
           <TextInput source="pair:homePage" fullWidth/>
+          <TextInput label="Commentaire" source="pair:comment" fullWidth />
         </FormTab>
         <FormTab label="Relations">
           <ReferenceInput label="Mots Clefs" reference="Keyword" source="pair:hasKeyword" >

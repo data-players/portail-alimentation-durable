@@ -15,6 +15,7 @@ export const ThemeEdit = props => {
         <FormTab label="Données">
           <TextInput source="pair:label" fullWidth />
           <MarkdownInput multiline source="pair:description" fullWidth />
+          <TextInput label="Commentaire" source="pair:comment" fullWidth />
         </FormTab>
         <FormTab label="Thème Parent">
           <ReferenceInput label="Thème Parent" reference="Theme" source="pair:broader" >
