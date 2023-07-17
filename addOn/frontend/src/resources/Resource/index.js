@@ -36,7 +36,7 @@ export default {
         'pair:hasKeyword': "Mots clefs",
         'pair:homePage' : "Lien de la ressource",
         'pair:hasDepartment' : "Départements",
-        'pair:hasDatasource' : "Source de données"
+        'pair:hasDataSource' : "Source de données"
       }
     }
   }

@@ -32,7 +32,7 @@ export const ResourceEdit = props => {
           <ReferenceInput label="Département" reference="Department" source="pair:hasDepartment" >
             <AutocompleteArrayInput optionText="pair:label" fullWidth />
           </ReferenceInput>
-          <ReferenceInput label="Source de donnée" reference="Datasource" source="pair:hasDatasource" >
+          <ReferenceInput label="Source de donnée" reference="Datasource" source="pair:hasDataSource" >
             <AutocompleteInput optionText="pair:label" fullWidth />
           </ReferenceInput>
         </FormTab>
