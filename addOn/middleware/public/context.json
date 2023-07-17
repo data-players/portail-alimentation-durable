@@ -35,10 +35,10 @@
       "pair:Department": {
         "@type": "@id"
       },
-      "pair:datasourceOf": {
+      "pair:dataSourceOf": {
         "@type": "@id"
       },
-      "pair:hasDatasource": {
+      "pair:hasDataSource": {
         "@type": "@id"
       },
       "pair:image": {
