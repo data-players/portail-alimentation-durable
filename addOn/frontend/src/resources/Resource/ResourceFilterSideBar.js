@@ -45,7 +45,7 @@ const ProjectFilterSidebar = () => {
         /> 
         <ReferenceFilter
           reference="Datasource"
-          source="pair:hasDatasource"
+          source="pair:hasDataSource"
           limit={100}
           showCounters={false}
           sort={{ field: 'pair:label', order: 'DESC' }}

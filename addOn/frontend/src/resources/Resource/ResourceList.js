@@ -34,7 +34,7 @@ const ResourceList = props => {
       <Datagrid >
           <CustomUrlField source="pair:homePage" />
           <TextField source="pair:description" className={style.description} />
-          <ReferenceField label="Source de données" source="pair:hasDatasource" reference="Datasource">
+          <ReferenceField label="Source de donnée" source="pair:hasDataSource" reference="Datasource">
               <ChipField source="pair:label" />
           </ReferenceField> 
           <ReferenceArrayField label="Thèmes" reference="Theme" source="pair:hasTopic">
