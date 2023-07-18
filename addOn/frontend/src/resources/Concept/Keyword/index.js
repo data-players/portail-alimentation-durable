@@ -32,7 +32,7 @@ export default {
         'pair:label': 'Titre',
         'pair:comment': 'Courte description',
         'pair:description': 'Description',
-        'pair:hasTopic': 'Sujet de'
+        'pair:hasTopic': 'Thèmes'
       }
     }
   }

@@ -21,12 +21,12 @@ services:
       - ./data/fuseki:/fuseki
 
   middleware:
-    image: dataplayers/archipelago-middleware:0.8
+    image: dataplayers/archipelago-middleware:0.10
     depends_on:
       - fuseki
     volumes:
       - './middleware/logs:/archipelago/middleware/logs'
-      - './middleware/jwt:/archipelago/middleware/jwt'
+      - './middleware/jwt:/archipelago/middlewre/jwt'
       - './middleware/uploads:/archipelago/middleware/uploads'
       - './addOn:/archipelago/middleware/addOn'
       - './data/fuseki/databases/localData:/localData'
@@ -51,7 +51,7 @@ services:
       - '3000:3000'
 
   frontend:
-    image: dataplayers/archipelago-frontend:0.8
+    image: dataplayers/archipelago-frontend:0.10
     environment:
       - 'REACT_APP_MIDDLEWARE_URL=http://localhost:3000/'
       - REACT_APP_MAPBOX_ACCESS_TOKEN=pk.eyJ1Ijoic3Jvc3NldDgxIiwiYSI6ImNrbDd0b2VkMzA1dDMycG9iemU4NnpuemsifQ.HvpZ3tnweVHEUYLb0tDvTg

@@ -20,7 +20,7 @@ export const ResourceEdit = props => {
           <ReferenceInput label="Mots Clefs" reference="Keyword" source="pair:hasKeyword" >
             <AutocompleteArrayInput optionText="pair:label" fullWidth />
           </ReferenceInput>
-          <ReferenceArrayInput label="Sujet de" reference="Theme" source="pair:hasTopic" fullWidth >
+          <ReferenceArrayInput label="Thèmes" reference="Theme" source="pair:hasTopic" fullWidth >
             <TreeAutocompleteArrayInput
               optionText="pair:label"
               parentProperty="pair:broader"

@@ -1,5 +1,4 @@
 const path = require('path');
-const urlJoin = require("url-join");
 const { CoreService } = require('@semapps/core');
 const CONFIG = require('../config/config');
 const containers = require('../config/containers');
@@ -34,12 +33,7 @@ module.exports = {
        }
       ]
     },
-    ldp: {
-      preferredViewForResource: async (resourceUri, containerPreferredView) => {
-        if (!containerPreferredView) return resourceUri;
-        return urlJoin(CONFIG.FRONT_URL, containerPreferredView, encodeURIComponent(resourceUri), 'show')
-      }
-    },
+    ldp: false,
     void: {
       title: CONFIG.INSTANCE_NAME,
       description: CONFIG.INSTANCE_DESCRIPTION

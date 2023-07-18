@@ -12,7 +12,7 @@ export default {
     edit: DatasourceEdit,
     icon: LocalOfferIcon,
     options: {
-      label: 'Sources de donnée',
+      label: 'Sources de données',
       parent: 'Concept'
     }
   },
