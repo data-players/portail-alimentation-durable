@@ -6,7 +6,6 @@ import { Link, makeStyles } from '@material-ui/core';
 import { ReferenceArrayField, ReferenceField } from '@semapps/field-components';
 import ChipList from '../../common/list/ChipList';
 
-
 const useStyles = makeStyles(theme => ({
   description: {
     display: '-webkit-box',

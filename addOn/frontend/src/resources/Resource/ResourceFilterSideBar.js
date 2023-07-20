@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Card, CardContent, makeStyles, TextField } from '@material-ui/core';
+import { Grid, Card as MuiCard, CardContent, makeStyles, TextField, withStyles } from '@material-ui/core';
 import { ReferenceFilter } from '@semapps/list-components';
 import { Form, Field } from 'react-final-form';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -30,6 +30,19 @@ const useStyles = makeStyles(theme => ({
     }
   },
 }));
+
+const Card = withStyles(theme => ({
+  root: {
+      [theme.breakpoints.up('sm')]: {
+          order: -1, // display on the left rather than on the right of the list
+          width: '15em',
+          marginRight: '1em',
+      },
+      [theme.breakpoints.down('sm')]: {
+          display: 'none',
+      },
+  },
+}))(MuiCard);
 
 const FilterText = ({ input, ...otherProps }) => <TextField {...input} {...otherProps} />;
 
