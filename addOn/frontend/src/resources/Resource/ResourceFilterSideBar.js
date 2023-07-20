@@ -81,6 +81,13 @@ const ProjectFilterSidebar = () => {
           sort={{ field: 'pair:label', order: 'DESC' }}
         /> 
         <ReferenceFilter
+          reference="KeyWordPad"
+          source="pair:hasKeyWordPad"
+          limit={100}
+          showCounters={false}
+          sort={{ field: 'pair:label', order: 'DESC' }}
+        /> 
+        <ReferenceFilter
           reference="Datasource"
           source="pair:hasDataSource"
           limit={100}

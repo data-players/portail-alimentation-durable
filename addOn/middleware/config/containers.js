@@ -38,6 +38,11 @@ module.exports = [
     acceptedTypes: ['pair:Keyword']
   },
   {
+    path: '/keywordpads',
+    preferredView: '/KeyWordPad',
+    acceptedTypes: ['pair:KeyWordPad']
+  },
+  {
     path: '/pages',
     preferredView: '/Page',
     acceptedTypes: ['semapps:Page']
