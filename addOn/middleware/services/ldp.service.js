@@ -4,6 +4,25 @@ const CONFIG = require('../config/config');
 const containers = require('../config/containers');
 const {defaultOntologies} = require('@semapps/core')
 
+async function getRessourceLabelsStringByURI(uri, ctx) {
+    if (Array.isArray(uri)) {
+        const promises = uri.map(async e => 
+            await ctx.call('ldp.resource.get', {
+                resourceUri: e,
+                accept: 'application/ld+json',
+                webId: 'system'
+            })
+        );
+        return Promise.all(promises);
+    } else {
+        return await ctx.call('ldp.resource.get', {
+            resourceUri: uri,
+            accept: 'application/ld+json',
+            webId: 'system'
+        });
+    }
+}
+
 module.exports = {
     mixins: [LdpService, DocumentTaggerMixin],
     settings: {
@@ -29,7 +48,29 @@ module.exports = {
               // console.log('container',container)
               switch (container.path) {
                 case '/resources':
-                    ctx.params.resource = {...resource, "pair:search":"coucou"};
+                    if (resource["pair:hasDataSource"]) {
+                        var source = await getRessourceLabelsStringByURI(resource["pair:hasDataSource"], ctx)
+                    } else { source = "";}
+
+                    if (resource["pair:hasTopic"]) {
+                        var topic = await getRessourceLabelsStringByURI(resource["pair:hasTopic"], ctx)
+                        if (Array.isArray(topic)) { topic = topic.map(obj => obj['pair:label']).toString();
+                        } else { topic = topic["pai:label"];}
+                    } else { topic = "";}
+
+                    if (resource["pair:hasDepartment"]) {
+                        var department = await getRessourceLabelsStringByURI(resource["pair:hasDepartment"], ctx)
+                        if (Array.isArray(department)) { department = department.map(obj => obj['pair:label']).toString();
+                        } else { department = department["pai:label"]; }
+                    } else { department = "";}
+
+                    if (resource["pair:hasKeyword"]) {
+                        var keyword = await getRessourceLabelsStringByURI(resource["pair:hasKeyword"], ctx)
+                        if (Array.isArray(keyword)) { keyword = keyword.map(obj => obj['pair:label']).toString();
+                        } else { keyword = keyword["pai:label"]; }
+                    } else { keyword = "";}
+
+                    ctx.params.resource = {...resource, "pair:search": source["pair:label"]+" "+topic+" "+keyword+" "+department};
                     break;
 
                 default:
@@ -51,17 +92,29 @@ module.exports = {
               // console.log('container',container)
               switch (container.path) {
                 case '/resources':
-                    const topicStr = Array.isArray(resource["pair:hasTopic"]) ? resource["pair:hasTopic"].toString() : resource["pair:hasTopic"];
-                    const keywordStr = Array.isArray(resource["pair:hasKeyword"]) ? resource["pair:hasKeyword"].toString() : resource["pair:hasKeyword"];
-                    const departmentStr = Array.isArray(resource["pair:hasDepartment"]) ? resource["pair:hasDepartment"].toString() : resource["pair:hasDepartment"];
-                    const sourceStr = Array.isArray(resource["pair:hasDatasource"]) ? resource["pair:hasDatasource"].toString() : resource["pair:hasDatasource"];;
-                    
-                    const { controlledActions } = await ctx.call('ldp.resources.get', {
-                        resourceUri: sourceStr
-                    });
-                    console.log("controlledActions:", controlledActions)
+                        if (resource["pair:hasDataSource"]) {
+                            var source = await getRessourceLabelsStringByURI(resource["pair:hasDataSource"], ctx)
+                        } else { source = "";}
 
-                    ctx.params.resource = {...resource, "pair:search": topicStr + " - " + keywordStr + " - " + departmentStr + " - " + sourceStr};
+                        if (resource["pair:hasTopic"]) {
+                            var topic = await getRessourceLabelsStringByURI(resource["pair:hasTopic"], ctx)
+                            if (Array.isArray(topic)) { topic = topic.map(obj => obj['pair:label']).toString();
+                            } else { topic = topic["pai:label"];}
+                        } else { topic = "";}
+
+                        if (resource["pair:hasDepartment"]) {
+                            var department = await getRessourceLabelsStringByURI(resource["pair:hasDepartment"], ctx)
+                            if (Array.isArray(department)) { department = department.map(obj => obj['pair:label']).toString();
+                            } else { department = department["pai:label"]; }
+                        } else { department = "";}
+
+                        if (resource["pair:hasKeyword"]) {
+                            var keyword = await getRessourceLabelsStringByURI(resource["pair:hasKeyword"], ctx)
+                            if (Array.isArray(keyword)) { keyword = keyword.map(obj => obj['pair:label']).toString();
+                            } else { keyword = keyword["pai:label"]; }
+                        } else { keyword = "";}
+
+                        ctx.params.resource = {...resource, "pair:search": source["pair:label"]+" "+topic+" "+keyword+" "+department};
                     break;
 
                 default:

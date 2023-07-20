@@ -4,6 +4,7 @@ import { TreeItem } from '@material-ui/lab';
 const generateTreeItem = (parentProperty, optionText, allItems, routeTree, parentId, dejavueItem, onLabelClick) => {
     const isParentLevel = !parentId;
     const listToUse = isParentLevel ? routeTree : allItems.filter(({ [parentProperty]: itemParentProperty }) => itemParentProperty === parentId);
+
     return (
         listToUse.map((route) => {
             

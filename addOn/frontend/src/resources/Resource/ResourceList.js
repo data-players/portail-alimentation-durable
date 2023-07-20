@@ -8,12 +8,12 @@ import ChipList from '../../common/list/ChipList';
 
 
 const useStyles = makeStyles(theme => ({
-  description: { 
-    maxHeight: '40px', 
-    overflow: 'hidden', 
-    display: "block"
-  },
-}));
+  description: {
+    display: '-webkit-box',
+    '-webkit-box-orient': 'vertical',
+    '-webkit-line-clamp': 2, // Number of lines to show before truncating
+    overflow: 'hidden',
+  },}));
 
 const CustomUrlField = ({record, source}) => {
   if (!record[source]) return (
@@ -32,7 +32,7 @@ const ResourceList = props => {
   return (
     <List {...props} aside={<ResourceFilterSideBar />} >
       <Datagrid >
-          <CustomUrlField source="pair:homePage" />
+          <CustomUrlField label="Titre/Lien" source="pair:homePage" />
           <TextField source="pair:description" className={style.description} />
           <ReferenceField label="Source de donnée" source="pair:hasDataSource" reference="Datasource">
               <ChipField source="pair:label" />

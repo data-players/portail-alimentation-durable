@@ -88,7 +88,7 @@ const AppBar = props => {
       <Hidden only="xs">
         <div className={classes.searchFormContainer}>
           <div className={classes.searchFormWrapper}>
-            <SearchForm />
+            {/* <SearchForm /> */}
           </div>
         </div>
       </Hidden>

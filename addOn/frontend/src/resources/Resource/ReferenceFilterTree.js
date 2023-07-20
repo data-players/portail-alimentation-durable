@@ -24,15 +24,26 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';import clsx from 
  * );
  */
 
+
+
 function GenerateTreeItem(source, label, allItems, routeTree, parentId) {
   // If !parentId it's a trunkItem
   const isParentLevel = !parentId;
   const listToUse = isParentLevel ? routeTree : allItems.filter(({ [source]: itemSource }) => itemSource === parentId);
   return (
     listToUse.map((route) =>
-      <TreeItem nodeId={route["id"]} label={route[label]} key={route["id"]} 
-        style={{fontFamily: "Roboto, Helvetica, Arial, sans-serif", fontSize: "0.875rem", lineHeight: "1.43", letterSpacing: "0.01071em"}}
-      >
+      <TreeItem 
+      nodeId={route["id"]} 
+      label={<div 
+        style={{  
+          fontSize: "0.875rem",
+          fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+          fontWeight: 400,
+          lineHeight: 1.43,
+          letterSpacing: "0.01071em"
+        }}>{route[label]}
+      </div>} 
+      key={route["id"]} >
         {GenerateTreeItem(source, label, allItems, [], route["id"])}
       </TreeItem>
     )
@@ -52,28 +63,32 @@ const ReferenceFilterTree = ({ reference, source, label, limit, sort, filter, ic
   }
 
   const handleSelect = (event, nodes) => {
-    const sparqlWhere = {
-      "type": "bgp",
-      "triples": nodes.map((node) => {
-        return {
-          subject: {
-            termType: 'Variable',
-            value: 's1',
-          },
-          predicate: {
-            termType: 'NamedNode',
-            value: predicate,
-          },
-          object: {
-            termType: 'NamedNode',
-            value: node,
-          },
-        };
-      }),
-    }
+    const isCollapseIconClicked = event.target.tagName === 'svg';
 
-    const encodedQuery = encodeURIComponent(JSON.stringify(sparqlWhere));
-    setFilters({...filterValues, "sparqlWhere": encodedQuery })
+    if (!isCollapseIconClicked) {
+      const sparqlWhere = {
+        "type": "bgp",
+        "triples": nodes.map((node) => {
+          return {
+            subject: {
+              termType: 'Variable',
+              value: 's1',
+            },
+            predicate: {
+              termType: 'NamedNode',
+              value: predicate,
+            },
+            object: {
+              termType: 'NamedNode',
+              value: node,
+            },
+          };
+        }),
+      }
+
+      const encodedQuery = encodeURIComponent(JSON.stringify(sparqlWhere));
+      setFilters({...filterValues, "sparqlWhere": encodedQuery })
+    }
   }
   
   return (
@@ -92,7 +107,7 @@ const ReferenceFilterTree = ({ reference, source, label, limit, sort, filter, ic
         defaultExpandIcon={<ChevronRightIcon />}
         style={{paddingLeft:"10px"}}
       >
-        {GenerateTreeItem(source, label, allItems, routeTree)}
+        {GenerateTreeItem(source, label, allItems, routeTree, undefined)}
       </TreeView>
     </div>
   )

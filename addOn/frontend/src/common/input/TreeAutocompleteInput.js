@@ -49,7 +49,8 @@ const TreeAutocompleteInput = (props) => {
     const isFullWidth = props.fullWidth === true;
 
     const handleSelect = (event, nodes) => {
-        props.input.onChange(nodes)
+        console.log("nodes: ", nodes.id)
+        props.input.onChange(nodes.id)
         handleClose();
     };
 

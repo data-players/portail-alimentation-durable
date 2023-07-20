@@ -24,7 +24,7 @@ export const ThemeEdit = props => {
               treeReference="Theme" 
               parentProperty="pair:broader" 
               resettable={true} 
-              shouldRenderSuggestions={value => false} 
+              // shouldRenderSuggestions={value => false} 
               defaultExpanded={true}
               validate={choices(validateIds, `La selection ne peut pas être l'élément courant`)}
             />
