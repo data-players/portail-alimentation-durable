@@ -17,7 +17,10 @@ export const ResourceEdit = props => {
           <TextInput label="Commentaire" source="pair:comment" fullWidth />
         </FormTab>
         <FormTab label="Relations">
-          <ReferenceInput label="Mots Clefs" reference="Keyword" source="pair:hasKeyword" >
+          <ReferenceInput label="Mots clefs" reference="Keyword" source="pair:hasKeyword" >
+            <AutocompleteArrayInput optionText="pair:label" fullWidth />
+          </ReferenceInput>
+          <ReferenceInput label="Mots clefs du portail" reference="KeyWordPad" source="pair:hasKeyWordPad" >
             <AutocompleteArrayInput optionText="pair:label" fullWidth />
           </ReferenceInput>
           <ReferenceArrayInput label="Thèmes" reference="Theme" source="pair:hasTopic" fullWidth >

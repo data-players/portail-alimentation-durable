@@ -19,7 +19,7 @@ export default {
     types: ['pair:Resource'],
     list: {
       servers: '@default',
-      forceArray: ['pair:hasTopic', 'pair:hasKeyword', 'pair:hasDepartment']
+      forceArray: ['pair:hasTopic', 'pair:hasKeyword', 'pair:hasKeyWordPad', 'pair:hasDepartment']
     },
     fieldsMapping: {
       title: 'pair:label'
@@ -33,10 +33,11 @@ export default {
         'pair:comment': 'Courte description',
         'pair:description': 'Description',
         'pair:hasTopic': 'Thèmes',
-        'pair:hasKeyword': "Mots clefs",
+        'pair:hasKeyword': "Mots clés",
         'pair:homePage' : "Lien de la ressource",
         'pair:hasDepartment' : "Départements",
-        'pair:hasDataSource' : "Source de données"
+        'pair:hasDataSource' : "Source de données",
+        'pair:hasKeyWordPad' : "Mots clés du portail"
       }
     }
   }

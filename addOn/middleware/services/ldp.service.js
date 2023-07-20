@@ -70,7 +70,13 @@ module.exports = {
                         } else { keyword = keyword["pai:label"]; }
                     } else { keyword = "";}
 
-                    ctx.params.resource = {...resource, "pair:search": source["pair:label"]+" "+topic+" "+keyword+" "+department};
+                    if (resource["pair:hasKeyWordPad"]) {
+                        var keywordpad = await getRessourceLabelsStringByURI(resource["pair:hasKeyWordPad"], ctx)
+                        if (Array.isArray(keywordpad)) { keywordpad = keywordpad.map(obj => obj['pair:label']).toString();
+                        } else { keywordpad = keywordpad["pai:label"]; }
+                    } else { keywordpad = "";}
+
+                    ctx.params.resource = {...resource, "pair:search": source["pair:label"]+" "+topic+" "+keyword+" "+keywordpad+" "+department};
                     break;
 
                 default:
@@ -114,7 +120,13 @@ module.exports = {
                             } else { keyword = keyword["pai:label"]; }
                         } else { keyword = "";}
 
-                        ctx.params.resource = {...resource, "pair:search": source["pair:label"]+" "+topic+" "+keyword+" "+department};
+                        if (resource["pair:hasKeyWordPad"]) {
+                            var keywordpad = await getRessourceLabelsStringByURI(resource["pair:hasKeyWordPad"], ctx)
+                            if (Array.isArray(keywordpad)) { keywordpad = keywordpad.map(obj => obj['pair:label']).toString();
+                            } else { keywordpad = keywordpad["pai:label"]; }
+                        } else { keywordpad = "";}
+
+                        ctx.params.resource = {...resource, "pair:search": source["pair:label"]+" "+topic+" "+keyword+" "+keywordpad+" "+department};
                     break;
 
                 default:
