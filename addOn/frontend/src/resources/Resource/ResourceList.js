@@ -12,15 +12,33 @@ const useStyles = makeStyles(theme => ({
     '-webkit-box-orient': 'vertical',
     '-webkit-line-clamp': 2, // Number of lines to show before truncating
     overflow: 'hidden',
-  },}));
+  },
+  link:{
+    fontSize: "20px"
+  },
+  linkText: {
+    color: "#026a63", 
+    fontSize: "20px"
+  }
+}));
 
-const CustomUrlField = ({record, source}) => {
+const CustomUrlField = ({record, source, style}) => {
   if (!record[source]) return (
-    <TextField source="pair:label" style={{color: "#026a63"}} />
+    <TextField source="pair:label" className={style.linkText} />
   )
 
   return(
-    <Link href={record[source]} color="primary" target="_blank" underline="hover" >{record["pair:label"]}</Link>
+    <Link href={record[source]} color="primary" target="_blank" underline="hover" className={style.link} >{record["pair:label"]}</Link>
+  )
+}
+
+const CustomDescription = ({record, descriptionSource, linkSource, linkLabel, style}) => {
+  return (
+    <div>
+      <CustomUrlField record={record} label={linkLabel} source={linkSource} style={style} />
+      <TextField source={descriptionSource} className={style.description}/>
+    </div>
+
   )
 }
 
@@ -31,15 +49,14 @@ const ResourceList = props => {
   return (
     <List {...props} aside={<ResourceFilterSideBar />} >
       <Datagrid >
-          <CustomUrlField label="Titre/Lien" source="pair:homePage" />
-          <TextField source="pair:description" className={style.description} />
-          <ReferenceField label="Source de donnée" source="pair:hasDataSource" reference="Datasource">
-              <ChipField source="pair:label" />
-          </ReferenceField> 
-          <ReferenceArrayField label="Thèmes" reference="Theme" source="pair:hasTopic">
-            <ChipList primaryText="pair:label" linkType="show"  externalLinks />
-          </ReferenceArrayField>
-          {isAuthicate ? <ShowButton /> : null}
+        <CustomDescription label="Ressources" linkSource="pair:homePage" descriptionSource="pair:description" linkLabel="Titre/Lien" descriptionLabel="pair:description" style={style} />
+        <ReferenceField label="Source de donnée" source="pair:hasDataSource" reference="Datasource">
+            <ChipField source="pair:label" />
+        </ReferenceField> 
+        <ReferenceArrayField label="Thèmes" reference="Theme" source="pair:hasTopic">
+          <ChipList primaryText="pair:label" linkType="show"  externalLinks />
+        </ReferenceArrayField>
+        {isAuthicate ? <ShowButton /> : null}
       </Datagrid>
     </List>
   )
