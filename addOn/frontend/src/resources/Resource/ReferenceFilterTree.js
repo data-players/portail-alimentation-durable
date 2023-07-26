@@ -113,7 +113,18 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
         className={classes.label}
       >
         {label}
+
+        {selected && <CancelOutlinedIcon
+          style={{
+            top: "50%",
+            right: "16px",
+            position: "absolute",
+            transform: "translateY(-50%)",
+            color: "rgba(0, 0, 0, 0.54)",
+          }}
+        />}
       </Typography>
+
     </div>
   );
 });
