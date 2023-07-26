@@ -10,7 +10,6 @@ const TreeList =({data, source, label, defaultExpanded = true}) => {
   const redirect = useRedirect()
 
   const handleSelect = (event, nodes) => {
-    const value = encodeURIComponent(nodes);
     redirect('/Theme/'+encodeURIComponent(nodes.id));
   }
 

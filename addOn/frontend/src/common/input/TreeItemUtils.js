@@ -7,11 +7,9 @@ const generateTreeItem = (parentProperty, optionText, allItems, routeTree, paren
 
     return (
         listToUse.map((route) => {
-            
             const test = dejavueItem.filter(item => item === route.id)
             if (test.length < 1) {
                 dejavueItem.push(route.id)
-
                 return (
                     <TreeItem 
                         nodeId={route["id"]} 
@@ -28,7 +26,7 @@ const generateTreeItem = (parentProperty, optionText, allItems, routeTree, paren
 }
 
 const buildTreeData = (data, source, defaultExpanded) => {
-    let routeTree = [], allItems = [], expendedNodes = [], validIds = [];
+    let routeTree = [], allItems = [], expendedNodes = [];
     for (const item in data) {
         if (defaultExpanded) {
             expendedNodes.push(data[item].id);

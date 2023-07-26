@@ -2,7 +2,6 @@ import React from 'react';
 import { AppBar as RaAppBar, Link } from 'react-admin';
 import { Hidden, makeStyles, Typography } from '@material-ui/core';
 import { UserMenu } from "@semapps/auth-provider";
-import SearchForm from './SearchForm';
 
 const useStyles = makeStyles(theme => ({
   menuButton: {
