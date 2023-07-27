@@ -84,6 +84,23 @@ module.exports = {
               }
 
               return res
+            },
+            "get":async (ctx)=>{
+
+                const webId = ctx.params.webId || ctx.meta.webId || 'anon';
+    
+                if(!(webId.includes('system') || webId.includes('anon')) && (ctx.params.containerUri.includes('program') || ctx.params.containerUri.includes('resources'))) {
+                        const user =  await ctx.broker.call('ldp.resource.get', {
+                            resourceUri : webId,
+                            webId : webId,
+                            accept:'application/ld+json'
+                        });
+                    console.log('check user protection',user)
+
+                    if (user['semapps:cacheReady']=='false' || user['semapps:cacheReady']==false){
+                        throw new Error (`cet utilisateur a été créé recement créé et n'est pas encore opérationel, veillez réésayer dans quelques instants`)
+                    }
+                 }
             }
         },
     },

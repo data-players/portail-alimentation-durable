@@ -1,11 +1,17 @@
 import React from 'react';
-import { Datagrid, ShowButton, ChipField, TextField } from 'react-admin';
+import { 
+  Datagrid, 
+  ShowButton, 
+  ChipField,  
+  DatagridBody,
+} from 'react-admin';
 import List from "../../layout/list/List";
 import ResourceFilterSideBar from "./ResourceFilterSideBar";
 import { Link, makeStyles } from '@material-ui/core';
 import { ReferenceArrayField, ReferenceField } from '@semapps/field-components';
 import ChipList from '../../common/list/ChipList';
-import { css } from '@emotion/react';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
 
 const useStyles = makeStyles(theme => ({
   description: {
@@ -15,31 +21,47 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
   },
   link:{
-    fontSize: "20px"
+    fontSize: "18px"
   },
   linkText: {
     color: "#026a63", 
-    fontSize: "20px"
+    fontSize: "18px"
   }
 }));
 
-const CustomUrlField = ({record, source, cssStyle}) => {
-  if (!record[source]) return (
-    <TextField source="pair:label" className={cssStyle.linkText} />
+const CustomDatagridRow = ({ record, resource, id, onToggleItem, children, selected, basePath }) => {
+  
+  return (
+    <TableRow key={id}>
+      {React.Children.map(children, field => (
+          <TableCell style={{width: field.props.width}} key={`${id}-${field.props.source}`}>
+              {React.cloneElement(field, {
+                  record,
+                  basePath,
+                  resource,
+              })}
+          </TableCell>
+      ))}
+    </TableRow>
+  )
+};
+
+const CustomDatagridBody = props => <DatagridBody {...props} row={<CustomDatagridRow />} />;
+const CustomDatagrid = props => <Datagrid {...props} body={<CustomDatagridBody />} />;
+
+const CustomUrlField = ({record, sourceLink, descriptionSource, title, cssStyle}) => {
+  if (!record[sourceLink]) return (
+    <>
+      <div className={cssStyle.linkText} >{record[title]}</div>
+      <div className={cssStyle.description} >{record[descriptionSource]}</div>
+    </>
   )
 
   return(
-    <Link href={record[source]} color="primary" target="_blank" underline="hover" className={cssStyle.link} >{record["pair:label"]}</Link>
-  )
-}
-
-const CustomDescription = ({record, descriptionSource, linkSource, linkLabel, cssStyle}) => {
-  return (
     <div>
-      <CustomUrlField record={record} label={linkLabel} source={linkSource} cssStyle={cssStyle} />
-      <TextField source={descriptionSource} className={cssStyle.description}/>
+      <Link href={record[sourceLink]} color="primary" target="_blank" underline="hover" className={cssStyle.link} >{record["pair:label"]}</Link>
+      <div className={cssStyle.description} >{record[descriptionSource]}</div>
     </div>
-
   )
 }
 
@@ -47,25 +69,19 @@ const ResourceList = props => {
   const style = useStyles();
   const isAuthicate = localStorage.getItem('token') !== null
 
+
   return (
     <List {...props} aside={<ResourceFilterSideBar />} >
-      <Datagrid  style={{tableLayout: 'auto'}} >
-        <CustomDescription 
-          label="Ressources" 
-          linkSource="pair:homePage" 
-          descriptionSource="pair:description" 
-          linkLabel="Titre/Lien" 
-          descriptionLabel="pair:description" 
-          cssStyle={style} 
-        />
-        <ReferenceField label="Source de donnée" source="pair:hasDataSource" reference="Datasource" linkType={false} >
+      <CustomDatagrid  style={{tableLayout: 'auto'}} >
+        <CustomUrlField width="60%" title="pair:label" sourceLink="pair:homePage" cssStyle={style} descriptionSource="pair:description" />
+        <ReferenceField width="10%" label="Source de donnée" source="pair:hasDataSource" reference="Datasource" linkType={false} >
             <ChipField source="pair:label" style={{color: "#026a63"}}/>
         </ReferenceField> 
-        <ReferenceArrayField label="Thèmes" reference="Theme" source="pair:hasTopic" >
+        <ReferenceArrayField width="30%" label="Thèmes" reference="Theme" source="pair:hasTopic" >
           <ChipList primaryText="pair:label" linkType={false} />
         </ReferenceArrayField>
         {isAuthicate ? <ShowButton /> : null}
-      </Datagrid>
+      </CustomDatagrid>
     </List>
   )
 };
