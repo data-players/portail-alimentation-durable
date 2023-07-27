@@ -73,8 +73,8 @@ const ResourceList = props => {
   return (
     <List {...props} aside={<ResourceFilterSideBar />} >
       <CustomDatagrid  style={{tableLayout: 'auto'}} >
-        <CustomUrlField width="60%" title="pair:label" sourceLink="pair:homePage" cssStyle={style} descriptionSource="pair:description" />
-        <ReferenceField width="10%" label="Source de donnée" source="pair:hasDataSource" reference="Datasource" linkType={false} >
+        <CustomUrlField label="Ressource" width="60%" title="pair:label" sourceLink="pair:homePage" cssStyle={style} descriptionSource="pair:description" />
+        <ReferenceField width="10%" label="Source" source="pair:hasDataSource" reference="Datasource" linkType={false} >
             <ChipField source="pair:label" style={{color: "#026a63"}}/>
         </ReferenceField> 
         <ReferenceArrayField width="30%" label="Thèmes" reference="Theme" source="pair:hasTopic" >
