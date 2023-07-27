@@ -19,7 +19,6 @@ export default {
     types: ['pair:Resource'],
     list: {
       servers: '@default',
-      fetchContainer: true,
       forceArray: ['pair:hasTopic', 'pair:hasKeyword', 'pair:hasKeyWordPad', 'pair:hasDepartment']
     },
     fieldsMapping: {
