@@ -43,7 +43,8 @@ function GenerateTreeItem(source, label, allItems, routeTree, parentId) {
             fontFamily: "Roboto, Helvetica, Arial, sans-serif",
             fontWeight: 400,
             lineHeight: 1.43,
-            letterSpacing: "0.01071em"
+            letterSpacing: "0.01071em",
+            maxWidth: "140px"
           }}>{route["pair:label"]}
         </div>}
         nodeId={route["id"]} 
@@ -117,7 +118,7 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
         {selected && <CancelOutlinedIcon
           style={{
             top: "50%",
-            right: "16px",
+            right: "1px",
             position: "absolute",
             transform: "translateY(-50%)",
             color: "rgba(0, 0, 0, 0.54)",
