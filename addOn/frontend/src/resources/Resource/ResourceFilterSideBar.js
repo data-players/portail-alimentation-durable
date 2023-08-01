@@ -87,20 +87,6 @@ const ProjectFilterSidebar = () => {
     />
       <CardContent className={classes.cardContent}>
         <ReferenceFilter
-          reference="Keyword"
-          source="pair:hasKeyword"
-          limit={100}
-          showCounters={false}
-          sort={{ field: 'pair:label', order: 'DESC' }}
-        /> 
-        <ReferenceFilter
-          reference="KeyWordPad"
-          source="pair:hasKeyWordPad"
-          limit={100}
-          showCounters={false}
-          sort={{ field: 'pair:label', order: 'DESC' }}
-        /> 
-        <ReferenceFilter
           reference="Datasource"
           source="pair:hasDataSource"
           limit={100}
@@ -116,6 +102,22 @@ const ProjectFilterSidebar = () => {
           limit={100}
           sort={{ field: 'pair:label', order: 'ASC' }}
         />
+        <ReferenceAutocompleteFilter
+          reference="Keyword"
+          source="pair:hasKeyword"
+          label="Mots clés"
+          optionText="pair:label" 
+          resettable={true}  
+          suggestionLimit={5}
+        /> 
+        <ReferenceAutocompleteFilter
+          reference="KeyWordPad"
+          source="pair:hasKeyWordPad"
+          label="Mots clés portail"
+          optionText="pair:label" 
+          resettable={true}  
+          suggestionLimit={5}
+        /> 
         <ReferenceAutocompleteFilter 
           optionText="pair:label" 
           resettable={true}  
@@ -123,7 +125,6 @@ const ProjectFilterSidebar = () => {
           label="Département"
           reference="Department" 
           source="pair:hasDepartment"
-          title="Départements"
         />
         
       </CardContent>

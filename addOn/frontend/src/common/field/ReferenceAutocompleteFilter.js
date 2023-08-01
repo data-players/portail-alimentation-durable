@@ -17,7 +17,7 @@ const ReferenceAutocompleteFilter = (props) => {
             <div style={{display: "flex", alignItems: "center"}}>
                 <LocalOfferIcon style={{ color: 'black', marginRight: "8px" }} />
                 <div style={{fontFamily: "Roboto, Helvetica, Arial, sans-serif", fontSize: "0.75rem", letterSpacing: "0.08333em"}}>
-                    {props.title !== undefined ? props.title.toUpperCase(): props.reference.toUpperCase()}
+                    {props.label !== undefined ? props.label.toUpperCase(): props.reference.toUpperCase()}
                 </div>
             </div>
             <Form
