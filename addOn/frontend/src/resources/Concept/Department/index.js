@@ -2,7 +2,7 @@ import DepartmentCreate from "./DepartmentCreate";
 import DepartmentEdit from './DepartmentEdit';
 import DepartmentList from './DepartmentList';
 import DepartmentShow from './DepartmentShow';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 export default {
   config: {

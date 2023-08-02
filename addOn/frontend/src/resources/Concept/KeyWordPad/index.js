@@ -2,7 +2,7 @@ import KeyWordPadCreate from "./KeyWordPadCreate";
 import KeyWordPadEdit from './KeyWordPadEdit';
 import KeyWordPadList from './KeyWordPadList';
 import KeyWordPadShow from './KeyWordPadShow';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 export default {
   config: {

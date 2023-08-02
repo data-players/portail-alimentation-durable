@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChipField, SingleFieldList } from 'react-admin';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { ReferenceArrayField } from '@semapps/field-components';
 import KeywordTitle from './KeywordTitle';
 import { MarkdownField } from '../../../common/field';

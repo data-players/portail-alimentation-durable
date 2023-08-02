@@ -1,5 +1,5 @@
 import React from "react";
-import { TreeItem } from '@material-ui/lab';
+import { TreeItem } from '@mui/lab';
 
 const generateTreeItem = (parentProperty, optionText, allItems, routeTree, parentId, dejavueItem, onLabelClick) => {
     const isParentLevel = !parentId;

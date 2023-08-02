@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRedirect } from "react-admin";
-import { TreeView } from '@material-ui/lab';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
+import { TreeView } from '@mui/lab';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRight';
 import { buildTreeData, generateTreeItem } from '../input/TreeItemUtils';
 
 

@@ -51,7 +51,7 @@ services:
       - '3000:3000'
 
   frontend:
-    image: dataplayers/archipelago-frontend:0.10
+    image: dataplayers/archipelago-frontend:0.11
     environment:
       - 'REACT_APP_MIDDLEWARE_URL=http://localhost:3000/'
       - REACT_APP_MAPBOX_ACCESS_TOKEN=pk.eyJ1Ijoic3Jvc3NldDgxIiwiYSI6ImNrbDd0b2VkMzA1dDMycG9iemU4NnpuemsifQ.HvpZ3tnweVHEUYLb0tDvTg

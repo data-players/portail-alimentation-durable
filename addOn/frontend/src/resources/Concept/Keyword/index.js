@@ -2,7 +2,7 @@ import KeywordCreate from "./KeywordCreate";
 import KeywordEdit from './KeywordEdit';
 import KeywordList from './KeywordList';
 import KeywordShow from './KeywordShow';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 export default {
   config: {

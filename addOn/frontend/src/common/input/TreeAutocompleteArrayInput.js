@@ -1,12 +1,12 @@
 import React, { useState  } from 'react';
-import { AutocompleteArrayInput, useGetList, getResources } from "react-admin";
-import { useSelector } from 'react-redux';
-import { Dialog, DialogTitle, DialogActions, makeStyles, Button } from '@material-ui/core';
-import EditIcon from '@material-ui/icons/Edit';
-import { TreeView } from '@material-ui/lab';
+import { AutocompleteArrayInput, useGetList } from "react-admin";
+import { Dialog, DialogTitle, DialogActions, Button } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import EditIcon from '@mui/icons-material/Edit';
+import { TreeView } from '@mui/lab';
 import { generateTreeItem, buildTreeData } from './TreeItemUtils';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 /*
 * Exemple :
@@ -40,9 +40,15 @@ const TreeAutocompleteArrayInput = (props) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const { data } = useGetList(props.treeReference, { page: 1, perPage: Infinity });
-    const resources = useSelector(getResources);
-    const treeRessource = resources.find(r => r.name === props.treeReference);
+
+    const { data, total, isLoading, error } = useGetList(
+        "Theme"
+    );
+
+    console.log(data)
+
+    // const resources = useSelector(getResources);
+    const treeRessource = data.resources.find(r => r.name === props.treeReference);
 
     const isFullWidth = props.fullWidth === true;
 

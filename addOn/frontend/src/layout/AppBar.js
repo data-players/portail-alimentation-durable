@@ -1,9 +1,18 @@
 import React from 'react';
 import { AppBar as RaAppBar, Link } from 'react-admin';
-import { Hidden, makeStyles, Typography } from '@material-ui/core';
+import { Zoom, Box, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { UserMenu } from "@semapps/auth-provider";
+import SearchForm from './SearchForm';
 
 const useStyles = makeStyles(theme => ({
+  appBar: {
+    [theme.breakpoints.down('sm')]: {
+      '& .MuiToolbar-root a.MuiLink-root': {
+        marginRight: 'auto'
+      }
+    }
+  },
   menuButton: {
     [theme.breakpoints.up('sm')]: {
       display: 'none'
@@ -23,7 +32,8 @@ const useStyles = makeStyles(theme => ({
     flex: 2,
     margin: '0 5%',
     [theme.breakpoints.up('md')]: {
-      minWidth: 360
+      minWidth: 360,
+      marginRight: 100
     }
   },
   searchFormWrapper: {
@@ -69,28 +79,29 @@ const AppBar = props => {
   return (
     <RaAppBar
       {...props}
+      className={classes.appBar}
       classes={{ toolbar: classes.toolbar, menuButton: classes.menuButton, ...props.classes }}
       color="primary"
     >
       <Link to="/">
         <div className={classes.presContainer}>
-          {/* <div className={classes.logoContainer}>
+          <div className={classes.logoContainer}>
             <Zoom in={true} timeout={2000}>
               <img className={classes.logo} src={process.env.PUBLIC_URL + '/logo192.png'} alt="logo" />
             </Zoom>
-          </div> */}
+          </div>
           <Typography className={classes.title} variant="h6" noWrap>
             {props.title}
           </Typography>
         </div>
       </Link>
-      <Hidden only="xs">
+       <Box sx={{ display: { xs: 'none', sm: 'revert' }, width: '100%' }} >
         <div className={classes.searchFormContainer}>
           <div className={classes.searchFormWrapper}>
-            {/* <SearchForm /> */}
+            <SearchForm />
           </div>
         </div>
-      </Hidden>
+      </Box>
     </RaAppBar>
   );
 };

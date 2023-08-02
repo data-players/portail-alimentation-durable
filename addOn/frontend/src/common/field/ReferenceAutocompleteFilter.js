@@ -1,8 +1,8 @@
 import React from "react";
 import { useListFilterContext } from 'ra-core';
-import { Grid } from '@material-ui/core';
-import { Form } from 'react-final-form';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import { Grid } from '@mui/material';
+import { Form } from 'react-hook-form';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { AutocompleteInput, ReferenceInput } from 'react-admin';
 
 const ReferenceAutocompleteFilter = (props) => {    

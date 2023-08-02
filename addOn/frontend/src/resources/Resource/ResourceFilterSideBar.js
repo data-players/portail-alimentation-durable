@@ -1,11 +1,13 @@
 import React from 'react';
-import { Grid, Card as MuiCard, CardContent, makeStyles, TextField, withStyles } from '@material-ui/core';
+import { Card as MuiCard, CardContent } from '@mui/material';
+import { makeStyles, withStyles } from '@mui/styles';
 import { ReferenceFilter } from '@semapps/list-components';
-import { Form, Field } from 'react-final-form';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useStore } from 'react-redux';
+import { useForm, FormProvider } from 'react-hook-form';
 import ReferenceFilterTree from './ReferenceFilterTree';
+import { Box, InputAdornment } from '@mui/material';
 import ReferenceAutocompleteFilter from '../../common/field/ReferenceAutocompleteFilter';
+import { TextInput, useListContext } from 'react-admin';
+import SearchIcon from '@mui/icons-material/Search';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -44,47 +46,62 @@ const Card = withStyles(theme => ({
   },
 }))(MuiCard);
 
-const FilterText = ({ input, ...otherProps }) => <TextField {...input} {...otherProps} />;
 
 const ProjectFilterSidebar = () => {
   const classes = useStyles();
-  const history = useHistory();
 
-  const location = useLocation();
-  const matches = location.pathname.match(/^\/([^/]+)/);
-  const currentType = matches ? matches[1] : 'Organization';
+  const {
+    displayedFilters,
+    filterValues,
+    setFilters,
+    hideFilter
+  } = useListContext();
 
-  const store = useStore();
-  const state = store.getState();
-  const qFilter = state?.admin?.resources[location.pathname.split('/')[1]]?.list?.params?.filter?.q;
+  const form = useForm({
+      defaultValues: filterValues,
+  });
 
-  const onSubmit = ({ filter, type }) => {
-    if (filter) {
-      history.push(`/${type}?filter=${encodeURIComponent(`{"q": "${filter}"}`)}`);
-    } else {
-      history.push(`/${type}?filter=${encodeURIComponent(`{}`)}`);
-    }
+  if (!displayedFilters.main) return null;
+
+  const onSubmit = (values) => {
+      if (Object.keys(values).length > 0) {
+          setFilters(values);
+      } else {
+          hideFilter("main");
+      }
   };
+
+  const resetFilter = () => {
+      setFilters({}, []);
+  };
+
 
   return (
     <Card className={classes.searchBar}>
-          <Form
-      onSubmit={onSubmit}
-      initialValues={{ type: currentType, filter: qFilter ? qFilter : '' }}
-      render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Field 
-                name="filter" 
-                component={FilterText} 
-                placeholder="Rechercher..." 
-                fullWidth />
-            </Grid>
-          </Grid>
-        </form>
-      )}
-    />
+      
+      <FormProvider {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+              <Box display="flex" alignItems="flex-end" mb={1}>
+                  <Box component="span" mr={2}>
+                      {/* Full-text search filter. We don't use <SearchFilter> to force a large form input */}
+                      <TextInput
+                          resettable
+                          helperText={false}
+                          source="q"
+                          label="Search"
+                          InputProps={{
+                              endAdornment: (
+                                  <InputAdornment>
+                                      <SearchIcon color="disabled" />
+                                  </InputAdornment>
+                              )
+                          }}
+                      />
+                  </Box>
+              </Box>
+          </form>
+      </FormProvider>
+
       <CardContent className={classes.cardContent}>
         <ReferenceFilter
           reference="Datasource"

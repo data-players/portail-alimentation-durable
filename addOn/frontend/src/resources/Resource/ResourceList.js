@@ -7,11 +7,12 @@ import {
 } from 'react-admin';
 import List from "../../layout/list/List";
 import ResourceFilterSideBar from "./ResourceFilterSideBar";
-import { Link, makeStyles } from '@material-ui/core';
+import { Link } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { ReferenceArrayField, ReferenceField } from '@semapps/field-components';
 import ChipList from '../../common/list/ChipList';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
 
 const useStyles = makeStyles(theme => ({
   description: {
