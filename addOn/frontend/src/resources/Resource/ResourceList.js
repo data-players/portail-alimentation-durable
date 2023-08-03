@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
     '-webkit-box-orient': 'vertical',
     '-webkit-line-clamp': 2, // Number of lines to show before truncating
     overflow: 'hidden',
+    maxWidth: "800px"
   },
   link:{
     fontSize: "18px"
@@ -29,8 +30,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CustomDatagridRow = ({ record, resource, id, onToggleItem, children, selected, basePath }) => {
-  
+const CustomDatagridRow = ({ record, resource, id, children, basePath }) => {
   return (
     <TableRow key={id}>
       {React.Children.map(children, field => (
@@ -80,7 +80,7 @@ const ResourceList = props => {
         <ReferenceArrayField width="30%" label="Thèmes" reference="Theme" source="pair:hasTopic" >
           <ChipList primaryText="pair:label" linkType={false} />
         </ReferenceArrayField>
-        {isAuthicate ? <ShowButton /> : null}
+        {isAuthicate ? <ShowButton /> : <></>}
       </CustomDatagrid>
     </List>
   )

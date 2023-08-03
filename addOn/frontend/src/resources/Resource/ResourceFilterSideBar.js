@@ -86,7 +86,7 @@ const ProjectFilterSidebar = () => {
       )}
     />
       <CardContent className={classes.cardContent}>
-        <ReferenceFilter
+        {/* <ReferenceFilter
           reference="Keyword"
           source="pair:hasKeyword"
           limit={100}
@@ -99,7 +99,7 @@ const ProjectFilterSidebar = () => {
           limit={100}
           showCounters={false}
           sort={{ field: 'pair:label', order: 'DESC' }}
-        /> 
+        />  */}
         <ReferenceFilter
           reference="Datasource"
           source="pair:hasDataSource"
@@ -107,7 +107,14 @@ const ProjectFilterSidebar = () => {
           showCounters={false}
           sort={{ field: 'pair:label', order: 'DESC' }}
         /> 
-        <ReferenceFilterTree
+        <ReferenceFilter
+          reference="Theme"
+          source="pair:hasTopic"
+          limit={100}
+          showCounters={false}
+          sort={{ field: 'pair:label', order: 'DESC' }}
+        /> 
+        {/* <ReferenceFilterTree
           reference="Theme"
           title="Thèmes"
           source="pair:broader"
@@ -115,6 +122,24 @@ const ProjectFilterSidebar = () => {
           predicate="http://virtual-assembly.org/ontologies/pair#hasTopic"
           limit={100}
           sort={{ field: 'pair:label', order: 'ASC' }}
+        /> */}
+        <ReferenceAutocompleteFilter 
+          optionText="pair:label" 
+          resettable={true}  
+          suggestionLimit={5}
+          label="Keyword"
+          reference="Keyword" 
+          source="pair:hasKeyword"
+          title="Mots clés"
+        />
+        <ReferenceAutocompleteFilter 
+          optionText="pair:label" 
+          resettable={true}  
+          suggestionLimit={5}
+          label="KeyWordPad"
+          reference="KeyWordPad" 
+          source="pair:hasKeyWordPad"
+          title="Mots clés portail"
         />
         <ReferenceAutocompleteFilter 
           optionText="pair:label" 
