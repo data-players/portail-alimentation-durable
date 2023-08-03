@@ -9,7 +9,9 @@ const ReferenceAutocompleteFilter = (props) => {
     const { filterValues, setFilters } = useListFilterContext();
 
     const onChange = (choice) => {
-        setFilters({...filterValues, "pair:hasDepartment": choice});
+        const newFilter={};
+        newFilter[props.source]=choice;
+        setFilters({...filterValues, ...newFilter});
     }
 
     return (
