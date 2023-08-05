@@ -43,7 +43,9 @@
     "copy-and-start-addOn": "yarn hot-copy-addOn & yarn start",
     "copy-addOn": "cp -r ./addOn/frontend/* .",
     "link-full": "yarn link-all && yarn link-semapps-packages", 
+    "link-provider": "yarn link --cwd ./../../semapps/src/frontend/packages/semantic-data-provider && yarn link @semapps/semantic-data-provider", 
     "link-and-copy-and-start-addOn": "yarn link-full && yarn copy-and-start-addOn",
+    "portailAD": "yarn link-provider && yarn start",
     "rollup" : "yarn --cwd ./../../semapps/src/frontend/ run rollup",
     "link-all" : "yarn --cwd ./../../semapps/src/frontend/ run link-all",
     "start": "react-scripts start",
@@ -51,8 +53,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "link-semapps-packages": "yarn link @semapps/semantic-data-provider",
-    "unlink-semapps-packages": "yarn unlink @semapps/semantic-data-provider"
+    "link-semapps-packages": "yarn link @semapps/activitypub-components @semapps/auth-provider @semapps/date-components @semapps/field-components @semapps/geo-components @semapps/input-components @semapps/interop-components @semapps/list-components @semapps/markdown-components @semapps/semantic-data-provider",
+    "unlink-semapps-packages": "yarn unlink @semapps/activitypub-components @semapps/auth-provider @semapps/date-components @semapps/field-components @semapps/geo-components @semapps/input-components @semapps/interop-components @semapps/list-components @semapps/markdown-components @semapps/semantic-data-provider"
   },
   "eslintConfig": {
     "extends": "react-app"
