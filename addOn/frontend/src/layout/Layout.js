@@ -1,26 +1,20 @@
 import React, { useMemo } from 'react';
 import { Layout as RaLayout, Sidebar } from 'react-admin';
-import makeStyles from '@mui/styles/makeStyles';
+import { makeStyles } from '@material-ui/core';
 import AppBar from './AppBar';
 import TreeMenu from './TreeMenu/TreeMenu';
 
+const isIframe = window !== window.top;
+
 const useStyles = makeStyles(theme => ({
-  layout: {
-    '& .RaLayout-content': {
-      backgroundColor: '#efefef',
-      paddingTop: theme.spacing(1),
-      paddingRight: theme.spacing(2),
-      paddingBottom: theme.spacing(2),
-      [theme.breakpoints.down('sm')]: {
-        padding: theme.spacing(1),
-        marginBottom: 80,
-      },
-      maxWidth: '100vw',
-      '& a:not(.MuiListItemButton-root):not(.MuiButtonBase-root)': {
-        overflowWrap: 'break-word',
-        color: theme.palette.primary.main
+  appFrame: {
+    marginTop: isIframe ? 0 : 56,
+    [theme.breakpoints.up('sm')]: {
+      '& #main-content': {
+        paddingTop: 8,
+        paddingLeft: 5,
       }
-    }
+    },
   },
   drawerPaper: {
     display: "none"
@@ -40,11 +34,12 @@ const MySidebar = props => {
 
 const Layout = ({ appBar, menu, userMenu, children, labelNbLines, ...otherProps }) => {
   const classes = useStyles();
+
   const LayoutTreeMenu = useMemo(() => props => <TreeMenu {...props} labelNbLines={labelNbLines} />, [labelNbLines]);
   return (
     <RaLayout
       {...otherProps}
-      className={classes.layout}
+      classes={{ appFrame: classes.appFrame } }
       sidebar={MySidebar}
       appBar={appBar}
       menu={menu ? menu : LayoutTreeMenu} 
