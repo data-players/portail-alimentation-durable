@@ -8,13 +8,13 @@ import {
 import List from "../../layout/list/List";
 import { Link } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { ReferenceArrayField } from '@semapps/field-components';
 import ResourceFilterSideBar from './ResourceFilterSideBar';
 // import ChipList from '../../common/list/ChipList';
 import ChipList from '../../common/list/ChipList'
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import ReferenceField from '../../common/field/ReferenceField';
+import ReferenceArrayField from '../../common/field/ReferenceArrayField';
 
 const useStyles = makeStyles(theme => ({
   description: {
@@ -50,7 +50,7 @@ const CustomDatagridRow = ({ record, resource, id, children, basePath }) => {
 };
 
 const CustomDatagridBody = props => <DatagridBody {...props} row={<CustomDatagridRow />} />;
-const CustomDatagrid = props => <Datagrid  {...props} body={<CustomDatagridBody />} />;
+const CustomDatagrid = props => <Datagrid {...props} body={<CustomDatagridBody />} />;
 
 const CustomUrlField = ({record, sourceLink, descriptionSource, title, cssStyle}) => {
   if (!record[sourceLink]) return (
