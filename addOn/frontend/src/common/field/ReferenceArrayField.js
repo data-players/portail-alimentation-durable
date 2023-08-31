@@ -3,7 +3,7 @@ import { ReferenceArrayField as RaReferenceArrayField, useRecordContext, RecordC
 
 const ReferenceArrayField = ({ source, ...otherProps }) => {
   const record = otherProps.record;
-  if (!Array.isArray(record[source])) {record[source] = [record[source]]}
+  if (!Array.isArray(record[source]) && record[source] !== undefined) {record[source] = [record[source]]}
   if (record?.[source]) {
     if (!Array.isArray(record[source])) {
       record[source] = [record[source]];
