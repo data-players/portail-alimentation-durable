@@ -120,7 +120,6 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
         {label}
 
         {selected && <CancelOutlinedIcon
-          onClick={handleDeleteFilter}
           style={{
             top: "50%",
             right: "1px",
