@@ -124,24 +124,6 @@ const ResourceFilterSideBar = () => {
           limit={100}
           sort={{ field: 'pair:label', order: 'ASC' }}
         />
-        <ReferenceAutocompleteFilter 
-          optionText="pair:label" 
-          resettable={true}  
-          suggestionLimit={5}
-          label="Keyword"
-          reference="Keyword" 
-          source="pair:hasKeyword"
-          title="Mots clés"
-        />
-        <ReferenceAutocompleteFilter 
-          optionText="pair:label" 
-          resettable={true}  
-          suggestionLimit={5}
-          label="KeyWordPad"
-          reference="KeyWordPad" 
-          source="pair:hasKeyWordPad"
-          title="Mots clés portail"
-        />
         <ReferenceAutocompleteFilter
           reference="Keyword"
           source="pair:hasKeyword"
