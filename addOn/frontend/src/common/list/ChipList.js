@@ -118,7 +118,7 @@ const ChipList = props => {
                 color="primary"
                 // Workaround to force ChipField to be clickable
                 onClick={handleClick}
-                style={{backgroundColor:"rgba(0, 0, 0, 0.08)"}}
+                style={{backgroundColor:"rgba(0, 0, 0, 0.08)", color: "#026a63"}}
               />
             </RecordContextProvider>
           );
