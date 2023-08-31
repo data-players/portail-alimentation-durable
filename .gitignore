@@ -2,3 +2,4 @@ data
 /middleware
 addOn/frontend/old/
 addOn/frontend/node_modules/
+.env.local
