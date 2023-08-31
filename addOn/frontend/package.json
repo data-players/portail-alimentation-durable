@@ -1,5 +1,5 @@
 {
-  "name": "archipelago-frontend",
+  "name": "PAD-frontend",
   "version": "1.0.0",
   "dependencies": {
     "@emotion/react": "^11.11.1",
