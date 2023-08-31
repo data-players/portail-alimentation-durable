@@ -115,7 +115,14 @@ const ResourceFilterSideBar = () => {
           showCounters={false}
           sort={{ field: 'pair:label', order: 'DESC' }}
         /> 
-        <ReferenceFilterTree
+        <ReferenceFilter
+          reference="Theme"
+          source="pair:hasTopic"
+          limit={100}
+          showCounters={false}
+          sort={{ field: 'pair:label', order: 'DESC' }}
+        /> 
+        {/* <ReferenceFilterTree
           reference="Theme"
           title="Thèmes"
           source="pair:broader"
@@ -123,6 +130,24 @@ const ResourceFilterSideBar = () => {
           predicate="http://virtual-assembly.org/ontologies/pair#hasTopic"
           limit={100}
           sort={{ field: 'pair:label', order: 'ASC' }}
+        /> */}
+        <ReferenceAutocompleteFilter 
+          optionText="pair:label" 
+          resettable={true}  
+          suggestionLimit={5}
+          label="Keyword"
+          reference="Keyword" 
+          source="pair:hasKeyword"
+          title="Mots clés"
+        />
+        <ReferenceAutocompleteFilter 
+          optionText="pair:label" 
+          resettable={true}  
+          suggestionLimit={5}
+          label="KeyWordPad"
+          reference="KeyWordPad" 
+          source="pair:hasKeyWordPad"
+          title="Mots clés portail"
         />
         <ReferenceAutocompleteFilter
           reference="Keyword"
