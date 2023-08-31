@@ -1,5 +1,5 @@
 import React, { useState  } from 'react';
-import { AutocompleteInput, useGetList } from "react-admin";
+import { AutocompleteInput, useGetList, useInput } from "react-admin";
 import Button from '@mui/material/Button';
 import TreeView from '@mui/lab/TreeView';
 import { makeStyles } from '@mui/styles';
@@ -8,6 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { generateTreeItem, buildTreeData } from './TreeItemUtils';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+
 /*
 * Exemple :
 *   <ReferenceArrayInput label="Sujet de" reference="Theme" source="pair:hasTopic" fullWidth >
@@ -36,21 +37,19 @@ const useStyles = makeStyles(theme => ({
 
 const TreeAutocompleteInput = (props) => {
     const style = useStyles();
+    const {field} = useInput({source:"pair:broader"});
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const { data } = useGetList(props.treeReference, { page: 1, perPage: Infinity });
-
-    // const resources = useSelector(getResources);
-    const treeRessource = data.resources.find(r => r.name === props.treeReference);
+    const  {data, isLoading}  = useGetList(props.treeReference, { page: 1, perPage: Infinity });
+    if (isLoading) return null;
 
     const isFullWidth = props.fullWidth === true;
 
     const handleSelect = (event, nodes) => {
-        console.log("nodes: ", nodes.id)
-        props.input.onChange(nodes.id)
+        field.onChange(nodes.id)
         handleClose();
     };
 
@@ -61,10 +60,10 @@ const TreeAutocompleteInput = (props) => {
                 <AutocompleteInput {...props} />
             </div>
             <div style={{paddingTop: "20px", paddingLeft: "10px"}}>
-             <EditIcon className={style.editIcon} onClick={handleOpen} />
+                <EditIcon className={style.editIcon} onClick={handleOpen} />
             </div>
             <Dialog fullWidth open={open} onClose={handleClose}>
-                <DialogTitle >Choix du {treeRessource.options.label} </DialogTitle>
+                <DialogTitle >Choix du {props.treeReference} </DialogTitle>
                 <TreeView 
                     defaultExpanded={treeData.expendedNodes}
                     defaultCollapseIcon={<ExpandMoreIcon />}

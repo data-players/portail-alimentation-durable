@@ -6,7 +6,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import ReferenceFilterTree from './ReferenceFilterTree';
 import { Box, InputAdornment } from '@mui/material';
 import ReferenceAutocompleteFilter from '../../common/field/ReferenceAutocompleteFilter';
-import { TextInput, useListContext } from 'react-admin';
+import { Button, TextInput, useListContext } from 'react-admin';
 import SearchIcon from '@mui/icons-material/Search';
 
 const useStyles = makeStyles(theme => ({
@@ -47,7 +47,7 @@ const Card = withStyles(theme => ({
 }))(MuiCard);
 
 
-const ProjectFilterSidebar = () => {
+const ResourceFilterSideBar = () => {
   const classes = useStyles();
 
   const {
@@ -61,7 +61,7 @@ const ProjectFilterSidebar = () => {
       defaultValues: filterValues,
   });
 
-  if (!displayedFilters.main) return null;
+//   if (!displayedFilters.main) return null;
 
   const onSubmit = (values) => {
       if (Object.keys(values).length > 0) {
@@ -75,6 +75,11 @@ const ProjectFilterSidebar = () => {
       setFilters({}, []);
   };
 
+  const RemoveFilterButton = (props) => {
+    return(
+      <Button onClick={resetFilter} >Supprimer les filtres</Button>
+    )
+  }
 
   return (
     <Card className={classes.searchBar}>
@@ -143,10 +148,10 @@ const ProjectFilterSidebar = () => {
           reference="Department" 
           source="pair:hasDepartment"
         />
-        
+        <RemoveFilterButton />
       </CardContent>
     </Card>
   );
 };
 
-export default ProjectFilterSidebar;
+export default ResourceFilterSideBar;

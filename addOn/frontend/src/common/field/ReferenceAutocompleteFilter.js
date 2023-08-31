@@ -1,42 +1,44 @@
 import React from "react";
 import { useListFilterContext } from 'ra-core';
 import { Grid } from '@mui/material';
-import { Form } from 'react-hook-form';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import { AutocompleteInput, ReferenceInput } from 'react-admin';
+import { AutocompleteInput } from 'react-admin';
+import { useForm, FormProvider } from 'react-hook-form'; // Import useForm and FormProvider
+import { ReferenceInput } from '@semapps/input-components';
 
-const ReferenceAutocompleteFilter = (props) => {    
+const ReferenceAutocompleteFilter = (props) => {
     const { filterValues, setFilters } = useListFilterContext();
 
     const onChange = (choice) => {
-        setFilters({...filterValues, "pair:hasDepartment": choice});
+        setFilters({...filterValues, [props.source]: choice});
     }
 
+    const methods = useForm(); // Initialize useForm
+
     return (
-        <div style= {{marginTop: "16px"}}>
-            <div style={{display: "flex", alignItems: "center"}}>
-                <LocalOfferIcon style={{ color: 'black', marginRight: "8px" }} />
-                <div style={{fontFamily: "Roboto, Helvetica, Arial, sans-serif", fontSize: "0.75rem", letterSpacing: "0.08333em"}}>
-                    {props.label !== undefined ? props.label.toUpperCase(): props.reference.toUpperCase()}
+        <FormProvider {...methods}>
+            <div style={{ marginTop: "16px" }}>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <LocalOfferIcon style={{ color: 'black', marginRight: "8px" }} />
+                    <div style={{ fontFamily: "Roboto, Helvetica, Arial, sans-serif", fontSize: "0.75rem", letterSpacing: "0.08333em" }}>
+                        {props.label !== undefined ? props.label.toUpperCase() : props.reference.toUpperCase()}
+                    </div>
                 </div>
+                <Grid container spacing={2} style={{paddingTop: "5px"}}>
+                    <Grid item xs={12}>
+                        <ReferenceInput  {...props}>
+                            <AutocompleteInput onChange={onChange} {...props} />
+                        </ReferenceInput>
+                    </Grid>
+                </Grid>
             </div>
-            <Form
-                onSubmit={() => {}}
-                render={({ handleSubmit }) => (
-                    <form onSubmit={handleSubmit}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <ReferenceInput onChange={onChange} {...props} >
-                                    <AutocompleteInput {...props} />
-                                </ReferenceInput>      
-                            </Grid>
-                        </Grid>
-                    </form>
-                )}
-            />
-        </div>
-        
+        </FormProvider>
     )
 }
 
 export default ReferenceAutocompleteFilter;
+
+
+
+
+

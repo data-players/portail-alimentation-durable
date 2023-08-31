@@ -13,8 +13,7 @@ const generateTreeItem = (parentProperty, optionText, allItems, routeTree, paren
                 return (
                     <TreeItem 
                         nodeId={route["id"]} 
-                        label={route[optionText]} 
-                        onLabelClick={e => onLabelClick(e, route )}
+                        label={<div onClick={e => onLabelClick(e, route )}>{route[optionText]}</div>} 
                         // key={route["id"]} style={route["selected"] ? {color: "#026a63" } : null }
                     >
                         {generateTreeItem(parentProperty, optionText, allItems, [], route["id"], [...dejavueItem], onLabelClick)}

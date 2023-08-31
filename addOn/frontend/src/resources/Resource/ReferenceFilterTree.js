@@ -6,7 +6,7 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import PropTypes from 'prop-types';
+import PropTypes, { node } from 'prop-types';
 import clsx from 'clsx';
 import Typography from '@mui/material/Typography';
 
@@ -92,6 +92,10 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
     handleSelection(event);
   };
 
+  const handleDeleteFilter = (event, b) => {
+    disabled(event);
+  };
+
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
@@ -116,6 +120,7 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
         {label}
 
         {selected && <CancelOutlinedIcon
+          onClick={handleDeleteFilter}
           style={{
             top: "50%",
             right: "1px",
@@ -158,7 +163,6 @@ CustomContent.propTypes = {
   /**
    * The id of the node.
    */
-  nodeId: PropTypes.string.isRequired,
 };
 
 function CustomTreeItem(props) {
@@ -180,29 +184,37 @@ const ReferenceFilterTree = ({ reference, source, label, limit, sort, filter, ic
   const handleSelect = (event, nodes) => {
     // const isCollapseIconClicked = event.target.tagName === 'svg';
     // if (!isCollapseIconClicked) {
-    const sparqlWhere = {
-      "type": "bgp",
-      "triples": nodes.map((node) => {
-        return {
-          subject: {
-            termType: 'Variable',
-            value: 's1',
-          },
-          predicate: {
-            termType: 'NamedNode',
-            value: predicate,
-          },
-          object: {
-            termType: 'NamedNode',
-            value: node,
-          },
-        };
-      }),
-    }
+    // const sparqlWhere = {
+    //   "type": "bgp",
+    //   "triples": nodes.map((node) => {
+    //     return {
+    //       subject: {
+    //         termType: 'Variable',
+    //         value: 's1',
+    //       },
+    //       predicate: {
+    //         termType: 'NamedNode',
+    //         value: predicate,
+    //       },
+    //       object: {
+    //         termType: 'NamedNode',
+    //         value: node,
+    //       },
+    //     };
+    //   }),
+    // }
 
-    const encodedQuery = encodeURIComponent(JSON.stringify(sparqlWhere));
-    setFilters({...filterValues, "sparqlWhere": encodedQuery })
+    // const encodedQuery = encodeURIComponent(JSON.stringify(sparqlWhere));
+    // setFilters({...filterValues, "sparqlWhere": encodedQuery })
+    
+    if (filterValues["pair:hasTopic"] === nodes) {
+      delete filterValues["pair:hasTopic"];
+      setFilters({...filterValues })
+    } else {
+      setFilters({...filterValues, "pair:hasTopic": nodes })
+    }
   }
+
   
   return (
     <div style= {{marginTop: "16px"}}>
@@ -213,14 +225,14 @@ const ReferenceFilterTree = ({ reference, source, label, limit, sort, filter, ic
         </div>
       </div>
       <TreeView
-        multiSelect
+        // multiSelect
         onNodeSelect={handleSelect}
         aria-label="icon expansion"
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
         style={{paddingLeft:"10px"}}
       >
-        {GenerateTreeItem(source, label, allItems, routeTree, undefined)}
+        {GenerateTreeItem(source, label, allItems, routeTree.reverse(), undefined)}
       </TreeView>
     </div>
   )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormTab, TabbedForm, TextInput, useGetList, choices } from 'react-admin';
+import { FormTab, TabbedForm, TextInput, useGetList, choices, useGetRecordId } from 'react-admin';
 import { MarkdownInput } from '@semapps/markdown-components';
 import Edit from "../../../layout/edit/Edit";
 import ThemeTitle from './ThemeTitle';
@@ -7,7 +7,12 @@ import { ReferenceInput } from '@semapps/input-components';
 import TreeAutocompleteInput from '../../../common/input/TreeAutocompleteInput';
 
 export const ThemeEdit = props => {
-  const validateIds = useGetList("Theme", { page: 1, perPage: Infinity }).ids.filter((theme => theme !== props.id));
+  const recordId = useGetRecordId();
+
+  const {data, isLoading} = useGetList("Theme", { page: 1, perPage: Infinity });
+  if (isLoading) return null;
+
+  const validateIds = data.filter((theme => theme.id !== recordId)).map(theme => theme.id);
 
   return (
     <Edit title={<ThemeTitle />} {...props}>
@@ -20,6 +25,7 @@ export const ThemeEdit = props => {
         <FormTab label="Thème Parent">
           <ReferenceInput label="Thème Parent" reference="Theme" source="pair:broader" >
             <TreeAutocompleteInput 
+              label="Thème parent"
               optionText="pair:label" 
               treeReference="Theme" 
               parentProperty="pair:broader" 

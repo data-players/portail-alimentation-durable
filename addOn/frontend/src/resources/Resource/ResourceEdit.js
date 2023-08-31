@@ -1,7 +1,7 @@
 import React from 'react';
-import { FormTab, TabbedForm, TextInput, AutocompleteArrayInput, ReferenceInput, AutocompleteInput } from 'react-admin';
+import { FormTab, TabbedForm, TextInput, AutocompleteArrayInput, AutocompleteInput } from 'react-admin';
 import { MarkdownInput,  } from '@semapps/markdown-components';
-import { ReferenceArrayInput } from '@semapps/input-components';
+import { ReferenceArrayInput, ReferenceInput } from '@semapps/input-components';
 import Edit from "../../layout/edit/Edit";
 import ResourceTitle from './ResourceTitle';
 import TreeAutocompleteArrayInput from '../../common/input/TreeAutocompleteArrayInput';
@@ -17,24 +17,26 @@ export const ResourceEdit = props => {
           <MarkdownInput label="Commentaire" source="pair:comment" fullWidth />
         </FormTab>
         <FormTab label="Relations">
-          <ReferenceInput label="Mots clefs" reference="Keyword" source="pair:hasKeyword" >
+          <ReferenceArrayInput label="Mots clefs" reference="Keyword" source="pair:hasKeyword" >
             <AutocompleteArrayInput optionText="pair:label" fullWidth />
-          </ReferenceInput>
-          <ReferenceInput label="Mots clefs du portail" reference="KeyWordPad" source="pair:hasKeyWordPad" >
+          </ReferenceArrayInput>
+          <ReferenceArrayInput label="Mots clefs du portail" reference="KeyWordPad" source="pair:hasKeyWordPad" >
             <AutocompleteArrayInput optionText="pair:label" fullWidth />
-          </ReferenceInput>
-          <ReferenceArrayInput label="Thèmes" reference="Theme" source="pair:hasTopic" fullWidth >
+          </ReferenceArrayInput>
+          <ReferenceArrayInput label="Thèmes" reference="Theme" source="pair:hasTopic" >
             <TreeAutocompleteArrayInput
               optionText="pair:label"
               parentProperty="pair:broader"
               treeReference="Theme"
-              shouldRenderSuggestions={value => false} 
+              source="pair:hasTopic"
+              // shouldRenderSuggestions={value => false} 
               defaultExpanded={true}
+              fullWidth
             />
           </ReferenceArrayInput>
-          <ReferenceInput label="Département" reference="Department" source="pair:hasDepartment" >
+          <ReferenceArrayInput label="Département" reference="Department" source="pair:hasDepartment" >
             <AutocompleteArrayInput optionText="pair:label" fullWidth />
-          </ReferenceInput>
+          </ReferenceArrayInput>
           <ReferenceInput label="Source de donnée" reference="Datasource" source="pair:hasDataSource" >
             <AutocompleteInput optionText="pair:label" fullWidth />
           </ReferenceInput>

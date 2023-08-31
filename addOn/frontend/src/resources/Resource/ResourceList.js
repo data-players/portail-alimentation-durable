@@ -6,13 +6,15 @@ import {
   DatagridBody,
 } from 'react-admin';
 import List from "../../layout/list/List";
-import ResourceFilterSideBar from "./ResourceFilterSideBar";
 import { Link } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { ReferenceArrayField, ReferenceField } from '@semapps/field-components';
-import ChipList from '../../common/list/ChipList';
+import { ReferenceArrayField } from '@semapps/field-components';
+import ResourceFilterSideBar from './ResourceFilterSideBar';
+// import ChipList from '../../common/list/ChipList';
+import ChipList from '../../common/list/ChipList'
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import ReferenceField from '../../common/field/ReferenceField';
 
 const useStyles = makeStyles(theme => ({
   description: {
@@ -31,7 +33,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const CustomDatagridRow = ({ record, resource, id, onToggleItem, children, selected, basePath }) => {
-  
   return (
     <TableRow key={id}>
       {React.Children.map(children, field => (
@@ -48,7 +49,7 @@ const CustomDatagridRow = ({ record, resource, id, onToggleItem, children, selec
 };
 
 const CustomDatagridBody = props => <DatagridBody {...props} row={<CustomDatagridRow />} />;
-const CustomDatagrid = props => <Datagrid {...props} body={<CustomDatagridBody />} />;
+const CustomDatagrid = props => <Datagrid  {...props} body={<CustomDatagridBody />} />;
 
 const CustomUrlField = ({record, sourceLink, descriptionSource, title, cssStyle}) => {
   if (!record[sourceLink]) return (
@@ -70,7 +71,6 @@ const ResourceList = props => {
   const style = useStyles();
   const isAuthicate = localStorage.getItem('token') !== null
 
-
   return (
     <List {...props} aside={<ResourceFilterSideBar />} >
       <CustomDatagrid  style={{tableLayout: 'auto'}} >
@@ -81,7 +81,7 @@ const ResourceList = props => {
         <ReferenceArrayField width="30%" label="Thèmes" reference="Theme" source="pair:hasTopic" >
           <ChipList primaryText="pair:label" linkType={false} />
         </ReferenceArrayField>
-        {isAuthicate ? <ShowButton /> : null}
+        {isAuthicate ? <ShowButton /> : <></>}
       </CustomDatagrid>
     </List>
   )

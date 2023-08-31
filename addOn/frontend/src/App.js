@@ -19,7 +19,7 @@ const App = () => (
       <ThemeProvider theme={theme}>
         <Admin
           disableTelemetry
-          title="Archipel"
+          title="Portail de données pour l'alimentation durable"
           authProvider={authProvider}
           dataProvider={dataProvider}
           i18nProvider={i18nProvider}
