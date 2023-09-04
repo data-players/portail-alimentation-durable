@@ -98,7 +98,7 @@ const AppBar = props => {
        <Box sx={{ display: { xs: 'none', sm: 'revert' }, width: '100%' }} >
         <div className={classes.searchFormContainer}>
           <div className={classes.searchFormWrapper}>
-            <SearchForm />
+            {/* <SearchForm /> */}
           </div>
         </div>
       </Box>

@@ -6,7 +6,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import ReferenceFilterTree from './ReferenceFilterTree';
 import { Box, InputAdornment } from '@mui/material';
 import ReferenceAutocompleteFilter from '../../common/field/ReferenceAutocompleteFilter';
-import { Button, TextInput, useListContext } from 'react-admin';
+import { Button, TextInput, useListContext, useRefresh } from 'react-admin';
 import SearchIcon from '@mui/icons-material/Search';
 
 const useStyles = makeStyles(theme => ({
@@ -73,6 +73,8 @@ const ResourceFilterSideBar = () => {
 
   const resetFilter = () => {
       setFilters({}, []);
+      // window.location.reload(false);
+      form.reset();
   };
 
   const RemoveFilterButton = (props) => {
@@ -124,30 +126,32 @@ const ResourceFilterSideBar = () => {
           limit={100}
           sort={{ field: 'pair:label', order: 'ASC' }}
         />
-        <ReferenceAutocompleteFilter
-          reference="Keyword"
-          source="pair:hasKeyword"
-          label="Mots clés"
-          optionText="pair:label" 
-          resettable={true}  
-          suggestionLimit={5}
-        /> 
-        <ReferenceAutocompleteFilter
-          reference="KeyWordPad"
-          source="pair:hasKeyWordPad"
-          label="Mots clés portail"
-          optionText="pair:label" 
-          resettable={true}  
-          suggestionLimit={5}
-        /> 
-        <ReferenceAutocompleteFilter 
-          optionText="pair:label" 
-          resettable={true}  
-          suggestionLimit={5}
-          label="Département"
-          reference="Department" 
-          source="pair:hasDepartment"
-        />
+        <FormProvider {...form}>
+          <ReferenceAutocompleteFilter
+            reference="Keyword"
+            source="pair:hasKeyword"
+            label="Mots clés"
+            optionText="pair:label" 
+            resettable={true}  
+            shouldRenderSuggestions={(val) => { return val.trim().length > 2 }}
+          /> 
+          <ReferenceAutocompleteFilter
+            reference="KeyWordPad"
+            source="pair:hasKeyWordPad"
+            label="Mots clés portail"
+            optionText="pair:label" 
+            resettable={true}  
+            shouldRenderSuggestions={(val) => { return val.trim().length > 2 }}
+          /> 
+          <ReferenceAutocompleteFilter 
+            optionText="pair:label" 
+            resettable={true}  
+            shouldRenderSuggestions={(val) => { return val.trim().length > 2 }}
+            label="Département"
+            reference="Department" 
+            source="pair:hasDepartment"
+          />
+        </FormProvider>
         <RemoveFilterButton />
       </CardContent>
     </Card>

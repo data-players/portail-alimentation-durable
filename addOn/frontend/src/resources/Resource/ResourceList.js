@@ -50,7 +50,7 @@ const CustomDatagridRow = ({ record, resource, id, children, basePath }) => {
 };
 
 const CustomDatagridBody = props => <DatagridBody {...props} row={<CustomDatagridRow />} />;
-const CustomDatagrid = props => <Datagrid  {...props} body={<CustomDatagridBody />} />;
+const CustomDatagrid = props => <Datagrid bulkActionButtons={false} {...props} body={<CustomDatagridBody />} />;
 
 const CustomUrlField = ({record, sourceLink, descriptionSource, title, cssStyle}) => {
   if (!record[sourceLink]) return (

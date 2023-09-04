@@ -4,11 +4,9 @@ import makeStyles from '@mui/styles/makeStyles';
 import AppBar from './AppBar';
 import TreeMenu from './TreeMenu/TreeMenu';
 
-const isIframe = window !== window.top;
-
 const useStyles = makeStyles(theme => ({
   appFrame: {
-    marginTop: isIframe ? 0 : 56,
+    marginTop: 56,
     [theme.breakpoints.up('sm')]: {
       '& #main-content': {
         paddingTop: 8,
@@ -16,20 +14,20 @@ const useStyles = makeStyles(theme => ({
       }
     },
   },
-  drawerPaper: {
-    display: "none"
+  hidden: {
+    display: 'none',
   },
 }));
 
 const MySidebar = props => {
   const classes = useStyles();
-  const isAuthicate = localStorage.getItem('token') !== null
+  const isAuthenticate = localStorage.getItem('token') !== null;
 
-  if (isAuthicate) {
-    return (<Sidebar {...props} /> );
-  } else {
-    return (<Sidebar classes={classes} {...props} /> );
-  }
+  return (
+    <div className={isAuthenticate ? '' : classes.hidden}>
+      <Sidebar {...props} />
+    </div>
+  );
 };
 
 const Layout = ({ appBar, menu, userMenu, children, labelNbLines, ...otherProps }) => {

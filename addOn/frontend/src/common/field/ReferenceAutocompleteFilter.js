@@ -13,10 +13,7 @@ const ReferenceAutocompleteFilter = (props) => {
         setFilters({...filterValues, [props.source]: choice});
     }
 
-    const methods = useForm(); // Initialize useForm
-
     return (
-        <FormProvider {...methods}>
             <div style={{ marginTop: "16px" }}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <LocalOfferIcon style={{ color: 'black', marginRight: "8px" }} />
@@ -32,7 +29,6 @@ const ReferenceAutocompleteFilter = (props) => {
                     </Grid>
                 </Grid>
             </div>
-        </FormProvider>
     )
 }
 
