@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReferenceField as RaReferenceField, useRecordContext, RecordContextProvider } from 'react-admin';
+import { ReferenceField as RaReferenceField, RecordContextProvider } from 'react-admin';
 
 const ReferenceField = ({ source, ...otherProps }) => {
   const record = otherProps.record;
@@ -9,7 +9,7 @@ const ReferenceField = ({ source, ...otherProps }) => {
     }
   }
   return (
-    <RecordContextProvider value={record}>
+    <RecordContextProvider value={record} >
       <RaReferenceField record={record} source={source} {...otherProps} />
     </RecordContextProvider>
   );

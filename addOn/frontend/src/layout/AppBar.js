@@ -1,9 +1,8 @@
 import React from 'react';
 import { AppBar as RaAppBar, Link } from 'react-admin';
-import { Zoom, Box, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { UserMenu } from "@semapps/auth-provider";
-import SearchForm from './SearchForm';
 
 const useStyles = makeStyles(theme => ({
   appBar: {

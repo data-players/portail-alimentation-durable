@@ -66,9 +66,9 @@ module.exports = {
           )
         ]
       });
-
+      console.log("Test__1____________________________________________________")
       await this.broker.call('webacl.cache.generateForUser', {webId:id});
-
+      console.log("Test__2____________________________________________________")
       await this.broker.call('ldp.resource.patch', {
         resourceUri : id,
         webId : 'system',

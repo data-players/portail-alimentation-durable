@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useListFilterContext } from 'ra-core';
 import { Grid } from '@mui/material';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { AutocompleteInput } from 'react-admin';
-import { useForm, FormProvider } from 'react-hook-form'; // Import useForm and FormProvider
 import { ReferenceInput } from '@semapps/input-components';
+import { useForm, FormProvider } from 'react-hook-form';
 
 const ReferenceAutocompleteFilter = (props) => {
     const { filterValues, setFilters } = useListFilterContext();
+
+    const form = useForm({
+        defaultValues: filterValues,
+    });
 
     const onChange = (choice) => {
         setFilters({...filterValues, [props.source]: choice});
     }
 
+    useEffect(() => {
+        if (filterValues[props.source] === undefined) {
+            form.reset();
+        }
+    }, [filterValues])
+
     return (
+        <FormProvider {...form}>
             <div style={{ marginTop: "16px" }}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <LocalOfferIcon style={{ color: 'black', marginRight: "8px" }} />
@@ -29,12 +40,8 @@ const ReferenceAutocompleteFilter = (props) => {
                     </Grid>
                 </Grid>
             </div>
+        </FormProvider>
     )
 }
 
 export default ReferenceAutocompleteFilter;
-
-
-
-
-

@@ -6,7 +6,7 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import PropTypes, { node } from 'prop-types';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Typography from '@mui/material/Typography';
 
@@ -28,10 +28,10 @@ import Typography from '@mui/material/Typography';
  * );
  */
 
-function GenerateTreeItem(source, label, allItems, routeTree, parentId) {
+function GenerateTreeItem(broader, label, allItems, routeTree, parentId) {
   // If !parentId it's a trunkItem
   const isParentLevel = !parentId;
-  const listToUse = isParentLevel ? routeTree : allItems.filter(({ [source]: itemSource }) => itemSource === parentId);
+  const listToUse = isParentLevel ? routeTree : allItems.filter(({ [broader]: itemSource }) => itemSource === parentId);
   return (
     listToUse.map((route) =>
     <div>
@@ -50,7 +50,7 @@ function GenerateTreeItem(source, label, allItems, routeTree, parentId) {
         nodeId={route["id"]} 
         key={route["id"]} 
         selected={true} >
-          {GenerateTreeItem(source, label, allItems, [], route["id"])}
+          {GenerateTreeItem(broader, label, allItems, [], route["id"])}
       </CustomTreeItem>
     </div>
     )
@@ -58,6 +58,8 @@ function GenerateTreeItem(source, label, allItems, routeTree, parentId) {
 }
 
 const CustomContent = React.forwardRef(function CustomContent(props, ref) {
+  const { filterValues } = useListFilterContext();
+  
   const {
     classes,
     className,
@@ -92,10 +94,6 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
     handleSelection(event);
   };
 
-  const handleDeleteFilter = (event, b) => {
-    disabled(event);
-  };
-
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
@@ -119,7 +117,7 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
       >
         {label}
 
-        {selected && <CancelOutlinedIcon
+        {selected && filterValues["pair:hasTopic"] && <CancelOutlinedIcon
           style={{
             top: "50%",
             right: "1px",
@@ -129,7 +127,6 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
           }}
         />}
       </Typography>
-
     </div>
   );
 });
@@ -168,13 +165,13 @@ function CustomTreeItem(props) {
   return <TreeItem ContentComponent={CustomContent} {...props} />;
 }
 
-const ReferenceFilterTree = ({ reference, source, label, limit, sort, filter, icon, predicate, title }) => {
+const ReferenceFilterTree = ({ reference, source, broader, label, limit, sort, filter, icon, predicate, title }) => {
   const { data } = useGetList(reference, { page: 1, perPage: Infinity }, sort, filter);
   const { filterValues, setFilters } = useListFilterContext();
 
   let routeTree = [], allItems = [];
   for (const item in data) {
-    if (data[item][source] === undefined ) {
+    if (data[item][broader] === undefined ) {
       routeTree.push(data[item]);
     }
     allItems = allItems.concat(data[item]);
@@ -206,14 +203,13 @@ const ReferenceFilterTree = ({ reference, source, label, limit, sort, filter, ic
     // const encodedQuery = encodeURIComponent(JSON.stringify(sparqlWhere));
     // setFilters({...filterValues, "sparqlWhere": encodedQuery })
     
-    if (filterValues["pair:hasTopic"] === nodes) {
-      delete filterValues["pair:hasTopic"];
+    if (filterValues[source] === nodes) {
+      delete filterValues[source];
       setFilters({...filterValues })
     } else {
-      setFilters({...filterValues, "pair:hasTopic": nodes })
+      setFilters({...filterValues, [source]: nodes })
     }
   }
-
   
   return (
     <div style= {{marginTop: "16px"}}>
@@ -231,7 +227,7 @@ const ReferenceFilterTree = ({ reference, source, label, limit, sort, filter, ic
         defaultExpandIcon={<ChevronRightIcon />}
         style={{paddingLeft:"10px"}}
       >
-        {GenerateTreeItem(source, label, allItems, routeTree.reverse(), undefined)}
+        {GenerateTreeItem(broader, label, allItems, routeTree.reverse(), undefined)}
       </TreeView>
     </div>
   )

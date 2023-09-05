@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReferenceArrayField as RaReferenceArrayField, useRecordContext, RecordContextProvider } from 'react-admin';
+import { ReferenceArrayField as RaReferenceArrayField, RecordContextProvider } from 'react-admin';
 
 const ReferenceArrayField = ({ source, ...otherProps }) => {
   const record = otherProps.record;

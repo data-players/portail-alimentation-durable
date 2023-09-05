@@ -6,7 +6,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import ReferenceFilterTree from './ReferenceFilterTree';
 import { Box, InputAdornment } from '@mui/material';
 import ReferenceAutocompleteFilter from '../../common/field/ReferenceAutocompleteFilter';
-import { Button, TextInput, useListContext, useRefresh } from 'react-admin';
+import { Button, TextInput, useListContext } from 'react-admin';
 import SearchIcon from '@mui/icons-material/Search';
 
 const useStyles = makeStyles(theme => ({
@@ -27,6 +27,9 @@ const useStyles = makeStyles(theme => ({
     padding: "10px",
     overflow: "visible",
     minWidth: "15%",
+    [theme.breakpoints.down('xl')]: {
+      minWidth: "25%",
+    },
     [theme.breakpoints.down('xs')]: {
       minWidth: "25%",
     }
@@ -46,12 +49,10 @@ const Card = withStyles(theme => ({
   },
 }))(MuiCard);
 
-
 const ResourceFilterSideBar = () => {
   const classes = useStyles();
 
   const {
-    displayedFilters,
     filterValues,
     setFilters,
     hideFilter
@@ -73,8 +74,6 @@ const ResourceFilterSideBar = () => {
 
   const resetFilter = () => {
       setFilters({}, []);
-      // window.location.reload(false);
-      form.reset();
   };
 
   const RemoveFilterButton = (props) => {
@@ -85,7 +84,6 @@ const ResourceFilterSideBar = () => {
 
   return (
     <Card className={classes.searchBar}>
-      
       <FormProvider {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
               <Box display="flex" alignItems="flex-end" mb={1}>
@@ -108,7 +106,6 @@ const ResourceFilterSideBar = () => {
               </Box>
           </form>
       </FormProvider>
-
       <CardContent className={classes.cardContent}>
         <ReferenceFilter
           reference="Datasource"
@@ -120,38 +117,37 @@ const ResourceFilterSideBar = () => {
         <ReferenceFilterTree
           reference="Theme"
           title="Thèmes"
-          source="pair:broader"
+          broader="pair:broader"
+          source="pair:hasTopic"
           label="pair:label"
           predicate="http://virtual-assembly.org/ontologies/pair#hasTopic"
           limit={100}
           sort={{ field: 'pair:label', order: 'ASC' }}
         />
-        <FormProvider {...form}>
-          <ReferenceAutocompleteFilter
-            reference="Keyword"
-            source="pair:hasKeyword"
-            label="Mots clés"
-            optionText="pair:label" 
-            resettable={true}  
-            shouldRenderSuggestions={(val) => { return val.trim().length > 2 }}
-          /> 
-          <ReferenceAutocompleteFilter
-            reference="KeyWordPad"
-            source="pair:hasKeyWordPad"
-            label="Mots clés portail"
-            optionText="pair:label" 
-            resettable={true}  
-            shouldRenderSuggestions={(val) => { return val.trim().length > 2 }}
-          /> 
-          <ReferenceAutocompleteFilter 
-            optionText="pair:label" 
-            resettable={true}  
-            shouldRenderSuggestions={(val) => { return val.trim().length > 2 }}
-            label="Département"
-            reference="Department" 
-            source="pair:hasDepartment"
-          />
-        </FormProvider>
+        <ReferenceAutocompleteFilter
+          reference="Keyword"
+          source="pair:hasKeyword"
+          label="Mots clés"
+          optionText="pair:label" 
+          resettable={true}  
+          shouldRenderSuggestions={(val) => { return val.trim().length > 2 }}
+        /> 
+        <ReferenceAutocompleteFilter
+          reference="KeyWordPad"
+          source="pair:hasKeyWordPad"
+          label="Mots clés portail"
+          optionText="pair:label" 
+          resettable={true}  
+          shouldRenderSuggestions={(val) => { return val.trim().length > 2 }}
+        /> 
+        <ReferenceAutocompleteFilter 
+          optionText="pair:label" 
+          resettable={true}  
+          shouldRenderSuggestions={(val) => { return val.trim().length > 2 }}
+          label="Département"
+          reference="Department" 
+          source="pair:hasDepartment"
+        />
         <RemoveFilterButton />
       </CardContent>
     </Card>
