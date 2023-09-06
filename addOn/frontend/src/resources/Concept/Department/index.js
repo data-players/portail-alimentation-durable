@@ -19,7 +19,8 @@ export default {
   dataModel: {
     types: ['pair:Department'],
     list: {
-      servers: '@default'
+      servers: '@default',
+      fetchContainer: true
     },
     fieldsMapping: {
       title: 'pair:label'

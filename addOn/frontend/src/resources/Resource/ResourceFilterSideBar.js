@@ -112,7 +112,7 @@ const ResourceFilterSideBar = () => {
           source="pair:hasDataSource"
           limit={100}
           showCounters={false}
-          sort={{ field: 'pair:label', order: 'DESC' }}
+          sort={{ field: 'pair:label', order: 'ASC' }}
         /> 
         <ReferenceFilterTree
           reference="Theme"
@@ -122,7 +122,7 @@ const ResourceFilterSideBar = () => {
           label="pair:label"
           predicate="http://virtual-assembly.org/ontologies/pair#hasTopic"
           limit={100}
-          sort={{ field: 'pair:label', order: 'ASC' }}
+          sort={{ field: 'pair:label', order: 'DESC' }}
         />
         <ReferenceAutocompleteFilter
           reference="Keyword"

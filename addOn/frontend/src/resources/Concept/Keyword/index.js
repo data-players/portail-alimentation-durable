@@ -19,7 +19,8 @@ export default {
   dataModel: {
     types: ['pair:Keyword'],
     list: {
-      servers: '@default'
+      servers: '@default',
+      fetchContainer: true
     },
     fieldsMapping: {
       title: 'pair:label'

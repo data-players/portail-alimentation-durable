@@ -41,7 +41,7 @@ const TreeAutocompleteArrayInput = (props) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const  {data, isLoading}  = useGetList(props.treeReference, { page: 1, perPage: Infinity });
+    const  {data, isLoading}  = useGetList(props.treeReference, {pagination:{ page: 1, perPage: Infinity }});
     if (isLoading) return null;
 
     const isFullWidth = props.fullWidth === true;
