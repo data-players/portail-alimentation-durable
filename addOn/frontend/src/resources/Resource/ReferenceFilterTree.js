@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGetList } from 'react-admin';
 import { TreeItem, TreeView, useTreeItem } from '@mui/lab';
 import { useListFilterContext } from 'ra-core';
@@ -6,7 +6,7 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import PropTypes from 'prop-types';
+import PropTypes, { node } from 'prop-types';
 import clsx from 'clsx';
 import Typography from '@mui/material/Typography';
 
@@ -132,33 +132,12 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
 });
 
 CustomContent.propTypes = {
-  /**
-   * Override or extend the styles applied to the component.
-   */
   classes: PropTypes.object.isRequired,
-  /**
-   * className applied to the root element.
-   */
   className: PropTypes.string,
-  /**
-   * The icon to display next to the tree node's label. Either a parent or end icon.
-   */
   displayIcon: PropTypes.node,
-  /**
-   * The icon to display next to the tree node's label. Either an expansion or collapse icon.
-   */
   expansionIcon: PropTypes.node,
-  /**
-   * The icon to display next to the tree node's label.
-   */
   icon: PropTypes.node,
-  /**
-   * The tree node label.
-   */
   label: PropTypes.node,
-  /**
-   * The id of the node.
-   */
 };
 
 function CustomTreeItem(props) {
@@ -168,6 +147,7 @@ function CustomTreeItem(props) {
 const ReferenceFilterTree = ({ reference, source, broader, label, limit, sort, filter, icon, predicate, title }) => {
   const { data } = useGetList(reference, { page: 1, perPage: Infinity }, sort, filter);
   const { filterValues, setFilters } = useListFilterContext();
+  const [ selected, setSelected ] = useState();
 
   let routeTree = [], allItems = [];
   for (const item in data) {
@@ -178,39 +158,24 @@ const ReferenceFilterTree = ({ reference, source, broader, label, limit, sort, f
   }
 
   const handleSelect = (event, nodes) => {
-    // const isCollapseIconClicked = event.target.tagName === 'svg';
-    // if (!isCollapseIconClicked) {
-    // const sparqlWhere = {
-    //   "type": "bgp",
-    //   "triples": nodes.map((node) => {
-    //     return {
-    //       subject: {
-    //         termType: 'Variable',
-    //         value: 's1',
-    //       },
-    //       predicate: {
-    //         termType: 'NamedNode',
-    //         value: predicate,
-    //       },
-    //       object: {
-    //         termType: 'NamedNode',
-    //         value: node,
-    //       },
-    //     };
-    //   }),
-    // }
+    let effectiveSelection;
+    if (nodes[0] === selected) {
+      effectiveSelection = [];
+    } else {
+      effectiveSelection = nodes;
+    }
+    setSelected(effectiveSelection[0])
 
-    // const encodedQuery = encodeURIComponent(JSON.stringify(sparqlWhere));
-    // setFilters({...filterValues, "sparqlWhere": encodedQuery })
-    
-    if (filterValues[source] === nodes) {
+    if (filterValues[source] === effectiveSelection[0]) {
       delete filterValues[source];
       setFilters({...filterValues })
     } else {
-      setFilters({...filterValues, [source]: nodes })
+      setFilters({...filterValues, [source]: effectiveSelection[0] })
     }
   }
-  
+
+  const treeViewSelection = selected?[selected] : []
+
   return (
     <div style= {{marginTop: "16px"}}>
       <div style={{display: "flex", alignItems: "center"}}>
@@ -220,7 +185,8 @@ const ReferenceFilterTree = ({ reference, source, broader, label, limit, sort, f
         </div>
       </div>
       <TreeView
-        // multiSelect
+        multiSelect
+        selected={treeViewSelection}
         onNodeSelect={handleSelect}
         aria-label="icon expansion"
         defaultCollapseIcon={<ExpandMoreIcon />}
