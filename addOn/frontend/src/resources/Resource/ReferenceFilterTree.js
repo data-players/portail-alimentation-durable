@@ -30,6 +30,7 @@ import Typography from '@mui/material/Typography';
 
 function GenerateTreeItem(broader, label, allItems, routeTree, parentId) {
   // If !parentId it's a trunkItem
+  // console.log('allItems',allItems)
   const isParentLevel = !parentId;
   const listToUse = isParentLevel ? routeTree : allItems.filter(({ [broader]: itemSource }) => itemSource === parentId);
   return (
@@ -145,7 +146,7 @@ function CustomTreeItem(props) {
 }
 
 const ReferenceFilterTree = ({ reference, source, broader, label, limit, sort, filter, icon, predicate, title }) => {
-  const { data } = useGetList(reference, { page: 1, perPage: Infinity }, sort, filter);
+  const { data } = useGetList(reference, { pagination:{page: 1, perPage: Infinity} , sort, filter});
   const { filterValues, setFilters } = useListFilterContext();
   const [ selected, setSelected ] = useState();
 
