@@ -1,5 +1,6 @@
 // Read all .env* files in the root folder and add them to process.env
 // See https://github.com/kerimdzhanov/dotenv-flow for more details
+console.log('process.env',process.env);
 require('dotenv-flow').config();
 
 module.exports = {
@@ -24,5 +25,6 @@ module.exports = {
   BACKUP_SERVER_PASSWORD: process.env.SEMAPPS_BACKUP_SERVER_PASSWORD,
   BACKUP_SERVER_HOST: process.env.SEMAPPS_BACKUP_SERVER_HOST,
   BACKUP_SERVER_PATH: process.env.SEMAPPS_BACKUP_SERVER_PATH,
+  BACKUP_SERVER_PORT: process.env.SEMAPPS_BACKUP_SERVER_PORT,
   BACKUP_FUSEKI_DATASETS_PATH: process.env.SEMAPPS_BACKUP_FUSEKI_DATASETS_PATH
 };

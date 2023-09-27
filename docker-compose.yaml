@@ -30,6 +30,7 @@ services:
       - './middleware/uploads:/archipelago/middleware/uploads'
       - './addOn:/archipelago/middleware/addOn'
       - './data/fuseki/databases/localData:/localData'
+      - './data/fuseki/backups:/app/fuseki-backups' # Needed to backup fuseki datasets
     environment:
       - 'SEMAPPS_SPARQL_ENDPOINT=http://fuseki:3030/'
       - SEMAPPS_MAIN_DATASET=localData
@@ -40,10 +41,11 @@ services:
       - SEMAPPS_OIDC_CLIENT_ID=semapps
       - SEMAPPS_REDIS_CACHE_HOST=redis
       - SEMAPPS_REDIS_CACHE_PASSW=redis      
-      - SEMAPPS_BACKUP_SERVER_USER=Data-Players
-      - SEMAPPS_BACKUP_SERVER_PASSWORD=D4t4-Pl4yers
-      - SEMAPPS_BACKUP_SERVER_HOST=https://ftp-ftpgo.data-players.com/
-      - SEMAPPS_BACKUP_SERVER_PATH=/backup/portail-alimentation-durable/backups/
+      - SEMAPPS_BACKUP_SERVER_USER=backup
+      - SEMAPPS_BACKUP_SERVER_PASSWORD=b4ckup8462
+      - SEMAPPS_BACKUP_SERVER_HOST=ftp-ftpgo.data-players.com
+      - SEMAPPS_BACKUP_SERVER_PORT=2022
+      - SEMAPPS_BACKUP_SERVER_PATH=/backups/portail-alimentation-durable/backups/datasets
       - SEMAPPS_BACKUP_FUSEKI_DATASETS_PATH=/app/fuseki-backups/
     command: bash -c "cp -r ./addOn/middleware/* . && yarn install && pm2-runtime 'yarn run dev'"
     networks:
