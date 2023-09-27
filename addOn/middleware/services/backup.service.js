@@ -17,8 +17,8 @@ module.exports = {
       port: CONFIG.BACKUP_SERVER_PORT
     },
     cronJob: {
-      time: '23 15 * * *', // Every night at 4am
-      timeZone: 'Europe/Paris'
+      time: '10 6 * * *', // Every night at 4am
+      timeZone: 'UTC'
     }
   }
 };
