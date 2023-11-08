@@ -1,5 +1,5 @@
 import React from "react";
-import { TreeItem } from '@mui/lab';
+import { TreeItem } from '@mui/x-tree-view';
 
 const generateTreeItem = (parentProperty, optionText, allItems, routeTree, parentId, dejavueItem, onLabelClick) => {
     const isParentLevel = !parentId;

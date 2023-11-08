@@ -3,7 +3,7 @@ import { AutocompleteArrayInput, useGetList, useInput } from "react-admin";
 import { Dialog, DialogTitle, DialogActions, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import EditIcon from '@mui/icons-material/Edit';
-import { TreeView } from '@mui/lab';
+import { TreeView } from '@mui/x-tree-view';
 import { generateTreeItem, buildTreeData } from './TreeItemUtils';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';

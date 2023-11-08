@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRedirect, useListContext } from "react-admin";
-import { TreeView } from '@mui/lab';
+import { TreeView } from '@mui/x-tree-view';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRight';
 import { buildTreeData, generateTreeItem } from '../input/TreeItemUtils';

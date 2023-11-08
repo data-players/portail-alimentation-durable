@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useGetList } from 'react-admin';
-import { TreeItem, TreeView, useTreeItem } from '@mui/lab';
+import { TreeItem, TreeView, useTreeItem } from '@mui/x-tree-view';
 import { useListFilterContext } from 'ra-core';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';

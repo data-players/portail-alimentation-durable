@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@mui/styles';
-import { useTreeItem} from '@mui/lab';
+import { useTreeItem} from '@mui/x-tree-view';
 import Typography from '@mui/material/Typography';
 
 const useStyles = makeStyles(theme => ({

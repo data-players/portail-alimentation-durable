@@ -1,7 +1,7 @@
 import React, { useState  } from 'react';
 import { AutocompleteInput, useGetList, useInput } from "react-admin";
 import Button from '@mui/material/Button';
-import TreeView from '@mui/lab/TreeView';
+import {TreeView} from '@mui/x-tree-view';
 import { makeStyles } from '@mui/styles';
 import { Dialog, DialogTitle, DialogActions } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';

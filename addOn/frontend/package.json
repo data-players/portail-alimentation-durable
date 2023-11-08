@@ -1,13 +1,13 @@
 {
-  "name": "PAD-frontend",
+  "name": "pad-frontend",
   "version": "1.0.0",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fullcalendar/core": "^5.7.2",
-    "@mui/lab": "^5.0.0-alpha.137",
     "@mui/material": "^5.14.2",
     "@mui/styles": "^5.0.2",
+    "@mui/x-tree-view": "6.0.0-beta.0",
     "@semapps/auth-provider": "0.6.0-alpha.2",
     "@semapps/date-components": "0.6.0-alpha.2",
     "@semapps/field-components": "0.6.0-alpha.2",
