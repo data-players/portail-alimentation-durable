@@ -6,7 +6,7 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import PropTypes, { node } from 'prop-types';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Typography from '@mui/material/Typography';
 
