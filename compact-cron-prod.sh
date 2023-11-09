@@ -6,6 +6,7 @@
 # check if the path is ok
 cd /home/debian/portail-alimentation-durable/
 
+make stop
 make compact
 
 echo "[INFO] Cron job compact finished at" $(date)
