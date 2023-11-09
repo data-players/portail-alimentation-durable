@@ -4,9 +4,8 @@
 #PATH=/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin
 
 # check if the path is ok
-cd /home/debian/portail-alimentation-durable/
+cd /home/debian/portail-alimentation-durable-prod/
 
-make stop
 make compact
 
 echo "[INFO] Cron job compact finished at" $(date)
