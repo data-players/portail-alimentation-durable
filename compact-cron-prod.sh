@@ -4,7 +4,7 @@
 #PATH=/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin
 
 # check if the path is ok
-cd /home/debian/portail-alimentation-durable/petr-peps-prod
+cd /home/debian/portail-alimentation-durable/
 
 make compact
 
