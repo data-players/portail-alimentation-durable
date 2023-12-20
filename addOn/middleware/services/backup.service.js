@@ -18,7 +18,7 @@ module.exports = {
     },
     cronJob: {
       time: '10 6 * * *', // Every night at 4am
-      timeZone: 'UTC'
+      timeZone: 'Europe/Paris'
     }
   }
 };
